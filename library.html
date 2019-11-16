@@ -6,38 +6,39 @@
 
   <title>Local Book library</title>
   <meta name="description" content="library">
-
+  <script src=""></script>
 </head>
 
-<body>
-  <script src=""></script>
+  <header>
+    <h1 class="header-title"><a href="#">Library</a></h1>
+    <button type="button" id="add-a-book-button">Add a book</button>
+  </header>
 
-  <h1>OSU book finder</h1>
-        <ul>   
-            <li><em>
-              <div style="background-color:lightgoldenrodyellow">
-                <h3>testing book title</h3>
-                <p>testing book descrciption</p>
-              </div>
-            </em></li>
-            		
-            <br>
-            <br>
+  <main class='library-content'>
+    
+    <aside class='filter-container'>
+      <h2>Filters</h2>
+      
+      <div class='filter-input-container'>
+        <label for='filter-title' class='filter-label'>Title</label>
+        <div class='filter-input-element'>
+          <input type='text' name='filter-title' id='filter-title' class='filter-input'>
+        </div>
+      </div>
 
-            <li><em>
-              <h2>testing addBooks button</h2>
-              <button type="button" onclick="alert('YesWorking!')">AddBooks</button>
-            </em></li>
-                
-                    <br>
-                    <br>
+      <div class='filter-input-container'>
+        <label for='filter-author' class='filter-label'>Author</label>
+        <div class='filter-input-element'>
+          <input type='text' name='filter-author' id='filter-author' class='filter-input'>
+        </div>
+      </div>
+    </aside>
 
-                    <li><em>
-                        <input type="text" placeholder="bookname" name="searchbar">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </em></li>
-                 
-        </ul>
-   		
+    <section id='books'>
+      <!-- We probably shouldn't hard-code in book postings like on Benny's List -->
+    </section>
+
+  </main>
+
 </body>
 </html>
