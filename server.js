@@ -22,7 +22,7 @@ fs.readFile('library.html',function(err,input){
 });
 
 function requestHandle(require, response){
-  if(require.url === "/index.html" || require.url ==="/"){
+  if(require.url === "/library.html" || require.url ==="/"){
     response.statusCode = 200;
     response.setHeader('Content-Type', 'text/html');
     response.write(lb_HTML);
