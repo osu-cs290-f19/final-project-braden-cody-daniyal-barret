@@ -16,7 +16,7 @@ var port = 3000;
 var lb_HTML, lb_CSS, lb_JS, lb_404;//if we dont need 404 page we can delete it;
 //might put all the web code into one single file for later convience
 
-fs.readFile('library.html',function(err,input){
+fs.readFile('public/library.html',function(err,input){
     if(err)throw err;
     lb_HTML = input;
 });
