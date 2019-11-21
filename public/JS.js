@@ -14,7 +14,7 @@ $(document).ready(function(){
 
     $(document).scroll(function(){
       var top = $(this).scrollTop();
-      if(top>5)
+      if(top>4)
       {
         header.addClass('headerActive');
         head.addClass('headActive');
