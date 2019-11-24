@@ -27,7 +27,7 @@ function requestHandle(require, response){
     response.write(lb_HTML);
     response.end();
   }
-}
+
 
 var serverA = http.createServer(requestHandle);
 serverA.listen(port,function(){
