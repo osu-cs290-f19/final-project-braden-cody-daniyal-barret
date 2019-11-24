@@ -20,11 +20,35 @@ fs.readFile('public/library.html',function(err,input){
     lb_HTML = input;
 });
 
+fs.readFile('public/CSS.css',function(err,input){
+    if(err)throw err;
+    lb_CSS = input;
+});
+
+fs.readFile('public/JS.js',function(err,input){
+    if(err)throw err;
+    lb_JS = input;
+});
+
 function requestHandle(require, response){
   if(require.url === "/library.html" || require.url ==="/"){
     response.statusCode = 200;
     response.setHeader('Content-Type', 'text/html');
     response.write(lb_HTML);
+    response.end();
+  }
+
+  else if(require.url === "/CSS.css"){
+    response.statusCode = 200;
+    response.setHeader('Content-Type', 'text/css');
+    response.write(lb_CSS);
+    response.end();
+  }
+
+  else if(require.url === "/JS.js"){
+    response.statusCode = 200;
+    response.setHeader('Content-Type', 'text/js');
+    response.write(lb_JS);
     response.end();
   }
 }
