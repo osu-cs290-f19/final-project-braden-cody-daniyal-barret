@@ -1,115 +1,159 @@
+a{
+  position: relative;
+  font-family:tahoma;
+  color:black;
+  text-decoration: none;
+  font-size: 40px;
+}
+h1.site-title{
+  width: 800px;
+  background-color: tomato;
+  top: 15px;
+  left: 55px;
+  display: flex;
+  align-items: center;
+  position:relative;
+}
 header {
-    background-color: rgb(255, 153, 0);
-    font-weight: bold;
-    display:flex;
-    align-items: center;
-    position: relative;
+  height: 80px;
+  width: 100%;
+  background-color: tomato;
+  font-weight: bold;
+  align-items: center;
+  position: relative;
 }
 
-
+input#input-search-text{
+  position: relative;
+  bottom: 45px;
+  left: 550px;
+  height: 20px;
+  border-radius: 9px;
+}
 .content {
-  display:flex;
+display:flex;
 
 }
 
 .sidebar {
-    height: 100vh;
-    width: 25vw;
-    background-color: rgb(94, 93, 93);
-}
-
-#search-text-container {
-
+  height: 100vh;
+  width: 25vw;
+  background-color: rgb(94, 93, 93);
 }
 
 .nav-button-container {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 30%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
 }
 
 .nav-button {
-    justify-content: center;
-    margin-top: 10px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .filter-container {
-    display: inline-block;
-    min-width: 200px;
-    max-width: 200px;
-    margin: 10px 10px auto 10px;
-    padding: 20px;
-    border-radius: 3px;
-    background-color: #efefef;
-  }
-  
-  .filter-container h2 {
-    margin: 0;
-  }
-  
-  .filter-input-container {
-    width: 100%;
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-  }
+  display: inline-block;
+  min-width: 200px;
+  max-width: 200px;
+  margin: 10px 10px auto 10px;
+  padding: 20px;
+  border-radius: 3px;
+  background-color: #efefef;
+}
 
-  .filter-input-element {
-    margin: 0 5px;
-    flex: 1 1 100%;
-  }
-  
-  .filter-input {
-    font-size: 14px;
-    width: 100%;
-    margin-left: 10px;
-    padding: 3px;
-    border: 1px solid #dadada;
-    border-radius: 3px;
-  }
+.filter-container h2 {
+  margin: 0;
+}
 
-  .books{ 
-    display: inline-block;
-    : top;
-    height: 300px;
-    width: 300px;
-    margin: 10px;
-    padding:10px;
-    border: 11 solid red;
-    border-radius: 2px;
-  }
+.filter-input-container {
+  width: 100%;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
 
-  .books-content{
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  }
+.filter-input-element {
+  margin: 0 5px;
+  flex: 1 1 100%;
+}
 
-  .books-image-container img{
-    max-width: 240px;
-    max-width:240px;
-  }
+.filter-input {
+  font-size: 14px;
+  width: 100%;
+  margin-left: 10px;
+  padding: 3px;
+  border: 1px solid #dadada;
+  border-radius: 3px;
+}
 
-  .books-info-container{
-    width:100%;
-    margin-top: 20px;
-  }
+.books{ 
+  display: inline-block;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+  padding:10px;
+  border: 11 solid red;
+  border-radius: 2px;
+}
 
-  .books-price{
-    display: inline-block;
-    font-size: 80%;
-    padding: 3px;
-    margin: 3px 5px;
-    border: 1px solid lightblue;
-    border-radius: 2px;
-    background: lightcoral;
-  }
+a.book-title{
+ font-size: 80%;
+}
 
+.books-content{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
 
+.books-image-container img{
+  max-width: 240px;
+  max-width:240px;
+}
 
-  .books-condition{
+.books-info-container{
+  width:100%;
+  margin-top: 20px;
+}
 
-  }
+#add-a-book-button{
+  position: relative;
+  bottom: 430px;
+  left: 800px;
+  height: 45px;
+  width: 135px;
+  border: none;
+  border-radius: 8px;
+  font-size: 8px;
+  background-color: black;
+  color: #fff;
+  cursor: pointer;
+}
+
+.books-price{
+  display: inline-block;
+  font-size: 80%;
+  padding: 3px;
+  margin: 3px 5px;
+  border: 1px solid lightblue;
+  border-radius: 2px;
+  background: lightcoral;
+}
+
+#add-a-book-button:hover,
+#add-a-book-button:focus {
+  bottom: 435px;
+  left: 800px;
+  height: 50px;
+  width: 150px;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+#add-a-book-button:focus {
+  outline: none;
+}
