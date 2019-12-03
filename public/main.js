@@ -28,8 +28,9 @@ function handleModalAccept() {
             title: title,
             subject: subject,
             date: date,
-            photoURL: photo
-        })
+            photoURL: photoURL,
+            vendorURL: vendorURL
+        });
     }
 
 }
