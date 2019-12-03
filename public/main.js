@@ -8,6 +8,14 @@ function hideAddBookModal() {
     addBookModal.classList.add('hidden');
 }
 
+function handleModalAccept() {
+    var author = document.getElementById('input-author');
+    var title = document.getElementById('input-title');
+    var subject = document.getElementById('input-subject');
+    var photoURL = document.getElementById('input-photoURL');
+
+}
+
 window.addEventListener('DOMContentLoaded', function() {
     var addBookButton = document.getElementById('add-a-book-button');
     if (addBookButton) {
