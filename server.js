@@ -13,11 +13,10 @@ app.get('/', function(req, res, next) {
     var templateArgs = {
         books: bookData,
     };
-    res.render('partials/postPage', templateArgs);
+    res.render('partials/libraryPage', templateArgs);
     res.status(200);
 });
 
-app.get('*', function(req, res) {});
 
 app.listen(port, function() {
     console.log("== Server is listening on port", port);

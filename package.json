@@ -1,24 +1,26 @@
 {
-  "name": "final-project-braden-cody-daniyal-barret",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/osu-cs290-f19/final-project-braden-cody-daniyal-barret.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/osu-cs290-f19/final-project-braden-cody-daniyal-barret/issues"
-  },
-  "homepage": "https://github.com/osu-cs290-f19/final-project-braden-cody-daniyal-barret#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "express-handlebars": "^3.1.0"
-  }
+    "name": "final-project-braden-cody-daniyal-barret",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "prestart": "npm run build",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js",
+        "build": "handlebars views/layouts/main.handlebars -f public/templates/mainTemplate.js && handlebars views/partials/add-a-book-modal.handlebars -f public/templates/add-a-book-modal-template.js && handlebars views/partials/bookCard.handlebars -f public/templates/bookCardTemplate.js && handlebars views/partials/libraryPage.handlebars -f public/templates/libraryPageTemplate.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/osu-cs290-f19/final-project-braden-cody-daniyal-barret.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/osu-cs290-f19/final-project-braden-cody-daniyal-barret/issues"
+    },
+    "homepage": "https://github.com/osu-cs290-f19/final-project-braden-cody-daniyal-barret#readme",
+    "dependencies": {
+        "express": "^4.17.1",
+        "express-handlebars": "^3.1.0"
+    }
 }
