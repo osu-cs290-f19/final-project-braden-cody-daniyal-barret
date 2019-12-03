@@ -5,12 +5,20 @@ function showAddBookModal() {
     addBookModal.classList.remove('hidden');
 }
 
+function clearModalFields()
+{
+    document.getElementById('input-author').value = ""
+    document.getElementById('input-title').value = ""
+    document.getElementById('input-subject').value = ""
+    document.getElementById('input-date').value = ""
+    document.getElementById('input-photoURL').value = ""
+    document.getElementById('input-vendorURL').value = ""
+}
+
 function hideAddBookModal() {
     var addBookModal = document.getElementById('add-a-book-modal');
     addBookModal.classList.add('hidden');
-    
-
-
+    clearModalFields();
 }
 
 function handleModalAccept() {
