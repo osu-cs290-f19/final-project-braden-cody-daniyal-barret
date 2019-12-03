@@ -8,6 +8,7 @@ function showAddBookModal() {
 function hideAddBookModal() {
     var addBookModal = document.getElementById('add-a-book-modal');
     addBookModal.classList.add('hidden');
+    
 
 
 }
