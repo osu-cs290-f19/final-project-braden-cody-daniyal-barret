@@ -1,25 +1,26 @@
-// window.addEventListener('DOMContentLoaded', () => {
-//     let elem = document.getElementsByClassName('books')[0];
-//     Books.map(book => {
+function showAddBookModal() {
+    var addBookModal = document.getElementById('add-a-book-modal');
+    addBookModal.classList.remove('hidden');
+}
 
-//         elem.innerHTML += `
-//         <div class="col s12 m4 l4 books">
-//         <div class="card">
-//         <div class="card-image">
-//         <img src="${book.img}">
-//         <span class="card-title">${book.name}</span>
-//         <div class='rating'><i class='material-icons'>star</i> 
-//         <span >${book.rate} </span></div>
-//         </div>
-//         <div class="card-action">
-//         <a href='#' class='waves-effect ' ><i class="material-icons">add_shopping_cart</i></a>
-//         <a href='#' class='waves-effect' style="float: right" ><i class='material-icons' >favorite</i></a>
-//         </div>
-//         </div>
-//         </div>
-//         `
-//     })
-// });
+function hideAddBookModal() {
+    var addBookModal = document.getElementById('add-a-book-modal');
+    addBookModal.classList.add('hidden');
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+    var addBookButton = document.getElementById('add-a-book-button');
+    if (addBookButton) {
+        addBookButton.addEventListener('click', showAddBookModal);
+    }
+
+    var cancelModalButton = document.getElementById('cancel-modal-button');
+    if (cancelModalButton) {
+        cancelModalButton.addEventListener('click', hideAddBookModal);
+    }
+
+});
+
 
 // window.addEventListener('DOMContentLoaded', () => {
 

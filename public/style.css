@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
-
 nav {
     background: #0d1128 !important;
     color: white;
@@ -68,18 +67,28 @@ nav {
 @media only screen and (min-width: 100px) and (max-width: 900px) {
     .card-title {
         font-size: 20px !important;
-
     }
-
     .search {
         width: 150px;
     }
-
     .search>input {
         width: 150px;
     }
-
     .card-image img {
         height: 200px !important;
     }
+}
+
+#sell-something-modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1010;
+    overflow: scroll;
+}
+
+.hidden {
+    display: none;
 }
