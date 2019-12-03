@@ -14,6 +14,10 @@ app.get('/', function(req, res, next) {
     res.status(200);
 });
 
+app.get('*', function(req, res, next) {
+    res.render('partials/404page');
+    res.status(404);
+});
 
 app.listen(port, function() {
     console.log("== Server is listening on port", port);
