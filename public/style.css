@@ -92,3 +92,9 @@ nav {
 .hidden {
     display: none;
 }
+
+/*404 page css*/
+
+.error-container {
+  text-align: center;
+}
