@@ -1,3 +1,5 @@
+var allBooks = [];
+
 function showAddBookModal() {
     var addBookModal = document.getElementById('add-a-book-modal');
     addBookModal.classList.remove('hidden');
@@ -6,13 +8,29 @@ function showAddBookModal() {
 function hideAddBookModal() {
     var addBookModal = document.getElementById('add-a-book-modal');
     addBookModal.classList.add('hidden');
+
+
 }
 
 function handleModalAccept() {
-    var author = document.getElementById('input-author');
-    var title = document.getElementById('input-title');
-    var subject = document.getElementById('input-subject');
-    var photoURL = document.getElementById('input-photoURL');
+    var author = document.getElementById('input-author').value.trim();
+    var title = document.getElementById('input-title').value.trim();
+    var subject = document.getElementById('input-subject').value.trim();
+    var date = document.getElementById('input-date').value.trim();
+    var photoURL = document.getElementById('input-photoURL').value.trim();
+    var vendorURL = document.getElementById('input-vendorURL').value.trim();
+
+    if (!author || !title || !subject || !date || !photoURL || !vendorURL) {
+        alert('One or more fields are blank!');
+    } else {
+        allBooks.push({
+            author: author,
+            title: title,
+            subject: subject,
+            date: date,
+            photoURL: photo
+        })
+    }
 
 }
 
