@@ -10,10 +10,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 app.get('/', function(req, res, next) {
-    var templateArgs = {
-        books: bookData,
-    };
-    res.render('partials/libraryPage', templateArgs);
+    res.render('partials/libraryPage', { books: bookData });
     res.status(200);
 });
 
