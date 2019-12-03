@@ -6,14 +6,45 @@ function showAddBookModal() {
 function hideAddBookModal() {
     var addBookModal = document.getElementById('add-a-book-modal');
     addBookModal.classList.add('hidden');
+
+    document.getElementById('input-author').value = ""
+    document.getElementById('input-title').value = ""
+    document.getElementById('input-subject').value = ""
+    document.getElementById('input-photoURL').value = ""
+    document.getElementById('input-vendorURL').value = ""
+    document.getElementById('input-date').value = ""
 }
 
 function handleModalAccept() {
-    var author = document.getElementById('input-author');
-    var title = document.getElementById('input-title');
-    var subject = document.getElementById('input-subject');
-    var photoURL = document.getElementById('input-photoURL');
+    var author = document.getElementById('input-author').value.trim();
+    var title = document.getElementById('input-title').value.trim();
+    var subject = document.getElementById('input-subject').value.trim();
+    var photoURL = document.getElementById('input-photoURL').value.trim();
+    var vendorURL = document.getElementById('input-vendorURL').value.trim();
+    var date = document.getElementById('input-date').value.trim();
 
+    if (!author || !title || !subject || !photoURL || !vendorURL || !date) {
+        alert("One of the fields is empty");
+    } else {
+
+    }
+
+
+}
+
+function parseBookElem(bookElem) {
+    var book = {
+        title: bookElem.getAttribute('data-title'),
+        author: bookElem.getAttribute('data-author'),
+        subject: bookElem.getAttribute('data-subject'),
+        date: bookElem.getAttribute('data-date'),
+        price: bookElem.getAttribute('data-price')
+    };
+
+    var bookImgElem = bookElem.querySelector('.card-image img');
+    book.photoURL = bookImgElem.src;
+
+    return book;
 }
 
 window.addEventListener('DOMContentLoaded', function() {
