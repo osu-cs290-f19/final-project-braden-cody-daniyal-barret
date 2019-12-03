@@ -7,7 +7,7 @@
         "prestart": "npm run build",
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node server.js",
-        "build": "handlebars views/layouts/main.handlebars -f public/templates/mainTemplate.js && handlebars views/partials/add-a-book-modal.handlebars -f public/templates/add-a-book-modal-template.js && handlebars views/partials/bookCard.handlebars -f public/templates/bookCardTemplate.js && handlebars views/partials/libraryPage.handlebars -f public/templates/libraryPageTemplate.js"
+        "build": "handlebars views/layouts/main.handlebars -f public/templates/mainTemplate.js && handlebars views/partials/add-a-book-modal.handlebars -f public/templates/add-a-book-modal-template.js && handlebars views/partials/bookCard.handlebars -f public/templates/bookCardTemplate.js && handlebars views/partials/libraryPage.handlebars -f public/templates/libraryPageTemplate.js && handlebars views/partials/404page.handlebars -f public/templates/404pageTemplate.js && handlebars views/partials/navbar.handlebars -f public/templates/navbarTemplate.js"
     },
     "repository": {
         "type": "git",
