@@ -1,5 +1,3 @@
-var allBooks = [];
-
 function showAddBookModal() {
     var addBookModal = document.getElementById('add-a-book-modal');
     addBookModal.classList.remove('hidden');
@@ -20,6 +18,16 @@ function hideAddBookModal() {
     clearModalFields();
 }
 
+function insertNewBook(title, photoURL, price) {
+    bookCardHTML = Handlebars.templates.bookCard({
+        title: title,
+        photoURL: photoURL
+    });
+
+    var bookCardContainer = document.querySelector('#books');
+    bookCardContainer.insertAdjacentHTML('beforeend', bookCardHTML);
+}
+
 function handleModalAccept() {
     var author = document.getElementById('input-author').value.trim();
     var title = document.getElementById('input-title').value.trim();
@@ -33,28 +41,17 @@ function handleModalAccept() {
         return;
     }
 
-    // ----  renderBook()
-    // allBooks.push({
-    //     author: author,
-    //     title: title,
-    //     subject: subject,
-    //     date: date,
-    //     photoURL: photoURL,
-    //     vendorURL: vendorURL
-    // });
-    storeAllBooks();
+    insertNewBook(title, photoURL);
+    storeBook(title, photoURL);
     hideAddBookModal();
 }
 
-function storeAllBooks() {
-    var booksObject = {
-        books: allBooks
-    };
-
+function storeBook(title, photoURL) {
     var req = new XMLHttpRequest();
-    req.open('POST', '/');
-    console.log(JSON.stringify(booksObject));
-    req.send(JSON.stringify(booksObject));
+    req.open('POST', '/', true);
+    req.setRequestHeader('Content-type', 'application/json');
+    var body = JSON.stringify({ title: title, photoURL: photoURL });
+    req.send(body);
 }
 
 
