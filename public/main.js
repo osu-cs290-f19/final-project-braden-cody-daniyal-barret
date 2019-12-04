@@ -5,8 +5,7 @@ function showAddBookModal() {
     addBookModal.classList.remove('hidden');
 }
 
-function clearModalFields()
-{
+function clearModalFields() {
     document.getElementById('input-author').value = ""
     document.getElementById('input-title').value = ""
     document.getElementById('input-subject').value = ""
@@ -31,18 +30,33 @@ function handleModalAccept() {
 
     if (!author || !title || !subject || !date || !photoURL || !vendorURL) {
         alert('One or more fields are blank!');
-    } else {
-        allBooks.push({
-            author: author,
-            title: title,
-            subject: subject,
-            date: date,
-            photoURL: photoURL,
-            vendorURL: vendorURL
-        });
+        return;
     }
 
+    // ----  renderBook()
+    // allBooks.push({
+    //     author: author,
+    //     title: title,
+    //     subject: subject,
+    //     date: date,
+    //     photoURL: photoURL,
+    //     vendorURL: vendorURL
+    // });
+    storeAllBooks();
+    hideAddBookModal();
 }
+
+function storeAllBooks() {
+    var booksObject = {
+        books: allBooks
+    };
+
+    var req = new XMLHttpRequest();
+    req.open('POST', '/');
+    console.log(JSON.stringify(booksObject));
+    req.send(JSON.stringify(booksObject));
+}
+
 
 window.addEventListener('DOMContentLoaded', function() {
     var addBookButton = document.getElementById('add-a-book-button');
@@ -53,6 +67,11 @@ window.addEventListener('DOMContentLoaded', function() {
     var cancelModalButton = document.getElementById('cancel-modal-button');
     if (cancelModalButton) {
         cancelModalButton.addEventListener('click', hideAddBookModal);
+    }
+
+    var acceptModalButton = document.getElementById('accept-modal-button');
+    if (acceptModalButton) {
+        acceptModalButton.addEventListener('click', handleModalAccept);
     }
 
 });

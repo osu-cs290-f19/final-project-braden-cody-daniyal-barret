@@ -1,4 +1,5 @@
 var path = require('path');
+var fs = require('fs');
 var express = require('express');
 var exphbs = require('express-handlebars');
 var bookData = require('./bookData');
@@ -12,6 +13,11 @@ app.use(express.static('public'));
 app.get('/', function(req, res, next) {
     res.render('partials/libraryPage', { books: bookData });
     res.status(200);
+});
+
+app.post('/', function(req, res, next) {
+    console.log(req.body);
+    //fs.writeFile('bookData.json', , 'utf8');
 });
 
 app.get('*', function(req, res, next) {
