@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+
+nav {
+    background: #0d1128 !important;
+    color: white;
+}
+
+.search_bar {
+    font-size: 14px;
+    width: 100%;
+    margin-left: 10px;
+    padding: 3px;
+    border: 1px solid #dadada;
+    border-radius: 3px;
+}
+
+.brand-logo {
+    font-family: 'Righteous', cursive !important;
+    width: 150px;
+    padding: 10px;
+    /*Alignment of OSU Book Tracker*/
+    line-height: 1;
+    text-align: center;
+
+}
+
+.sidenav-logo {
+    font-family: 'Righteous', cursive !important;
+    padding: 10% !important;
+    font-size: 20px;
+    margin: 10px;
+}
+
+.brand-logo>span {
+    font-size: 20px;
+    text-align: center;
+}
+
+.btn {
+    background: #ff5c00;
+    color: white;
+    margin: 10px;
+}
+
+.btn:hover {
+    background-color: #e97633;
+}
+
+.col.s12.m4.l4.books {
+    display: inline-block;
+    vertical-align: top;
+    height: 320px;
+    width: 250px;
+    margin: 20px;
+}
+
+.card {
+    display: inline-block;
+    vertical-align: top;
+    height: 320px;
+    width: 250px;
+    margin: 20px;
+}
+
+.card-title {
+    display: flex;
+    background: rgba(0, 0, 0, 0.726);
+    width: 250px;
+    padding: 10px !important;
+    font-size: 16px !important;
+}
+
+.card-image img {
+    max-height: 330px;
+    max-width: 250px;
+    min-height: 250px;
+    transform: scale(1, 1);
+    transition: transform .5s;
+}
+.card-image img:hover {
+transform: scale(1.04, 1.04)
+}
+
+
+.card-action>a {
+    color: #e97633 !important;
+    transition: color .5s;
+}
+
+.card-action>a:hover {
+    color: #ff5c00 !important;
+}
+
+.rating {
+    position: absolute;
+    z-index: 20;
+    color: rgb(255, 138, 0);
+    padding: 5px;
+    top: 0;
+}
+
+.rate {
+    font-size: 16px;
+}
+.author {
+    position: absolute;
+    font-size: 12px;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    color: white;
+    background: #ff5e00ad;
+}
+.date {
+    position: absolute;
+    right: 0;
+    padding-right: 5px;
+    font-size: 14px;
+}
+
+.lower-nav {
+    top: 4.05em !important;
+    border-top: 2px solid #ff5c00 !important;
+}
+
+@media only screen and (min-width: 100px) and (max-width: 900px) {
+    .col.s12.m4.l4.books {
+        display: inline-block;
+        vertical-align: top;
+        height: 320px;
+        width: 250px;
+        margin: 20px;
+    }
+
+    .card {
+        display: inline-block;
+        vertical-align: top;
+        height: 320px;
+        width: 250px;
+        margin: 20px;
+    }
+
+    .card-title {
+        display: flex;
+        background: black;
+        opacity: .6;
+        width: 250px;
+    }
+
+    .card-image img {
+        max-height: 320px;
+        max-width: 250px;
+    }
+
+    .search {
+        width: 110px;
+    }
+
+    .search>input {
+        width: 150px;
+    }
+
+
+}
+
+/* 404 page*/
+.error-container {
+    text-align: center;
+}
