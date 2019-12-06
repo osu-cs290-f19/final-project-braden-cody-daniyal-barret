@@ -2,61 +2,91 @@
 nav {
     background: #0d1128 !important;
     color: white;
-}/* check */
+}
+
+
+/* check */
 
 .brand-logo {
     font-family: 'Righteous', cursive !important;
     width: 100px;
     line-height: 1;
     text-align: center;
-}/* check */
+}
+
+
+/* check */
 
 .sidenav-logo {
     font-family: 'Righteous', cursive !important;
     padding: 10% !important;
     font-size: 20px;
     margin: 10px;
-}/* check */
+}
+
+
+/* check */
 
 .brand-logo>span {
     font-size: 20px;
     text-align: center;
-}/* check */
+}
+
+
+/* check */
 
 .btn {
     background: #ff5c00;
     color: white;
     margin: 10px;
-}/* check */
+}
+
+
+/* check */
 
 .btn:hover {
     background-color: #e97633;
-}/* check */
+}
+
+
+/* check */
 
 .card-title {
-  display: flex;
-  background: rgba(0, 0, 0, 0.726);
-  width: 250px;
-  padding: 10px !important;
-  font-size: 16px !important;
-}/* check(new update) */
+    display: flex;
+    background: rgba(0, 0, 0, 0.726);
+    width: 250px;
+    padding: 10px !important;
+    font-size: 16px !important;
+}
+
+
+/* check(new update) */
 
 .card-image img {
-  max-height: 330px;
-  max-width: 250px;
-  min-height: 250px;
-  transform: scale(1, 1);
-  transition: transform .5s;
-}/* check(new update) */
+    max-height: 330px;
+    max-width: 250px;
+    min-height: 250px;
+    transform: scale(1, 1);
+    transition: transform .5s;
+}
+
+
+/* check(new update) */
 
 .card-action>a {
     color: #e97633 !important;
     transition: color .5s;
-}/* check */
+}
+
+
+/* check */
 
 .card-action>a:hover {
     color: #ff5c00 !important;
-}/* check */
+}
+
+
+/* check */
 
 .rating {
     position: absolute;
@@ -64,7 +94,11 @@ nav {
     color: rgb(255, 138, 0);
     padding: 5px;
     top: 0;
-}/* check */
+}
+
+
+/* check */
+
 
 /*
 .rating>span {
@@ -73,24 +107,28 @@ nav {
 removed
 */
 
-@media only screen and (min-width: 100px) and (max-width: 900px) {/* check */
+@media only screen and (min-width: 100px) and (max-width: 900px) {
+    /* check */
     .card-title {
-      display: flex;
-      background: black;
-      opacity: .6;
-      width: 250px;
-    }/* check(new update) */
+        display: flex;
+        background: black;
+        opacity: .6;
+        width: 250px;
+    }
+    /* check(new update) */
     .search {
         width: 150px;
-    }/* check */
+    }
+    /* check */
     .search>input {
         width: 150px;
-    }/* check */
+    }
+    /* check */
     .card-image img {
-      max-height: 320px;
-      max-width: 250px;
-    }/* check(new update) */
-
+        max-height: 320px;
+        max-width: 250px;
+    }
+    /* check(new update) */
     /* new CSS added here*/
     .col.s12.m4.l4.books {
         display: inline-block;
@@ -99,7 +137,6 @@ removed
         width: 250px;
         margin: 20px;
     }
-
     .card {
         display: inline-block;
         vertical-align: top;
@@ -107,13 +144,13 @@ removed
         width: 250px;
         margin: 20px;
     }
-
     .card-image img {
         max-height: 320px;
         max-width: 250px;
     }
-
 }
+
+
 /*
 #sell-something-modal {
     position: fixed;
@@ -131,12 +168,23 @@ removed
 removed
 */
 
+.hidden {
+    display: none;
+}
+
+
 /*404 page css*/
+
 .error-container {
-  text-align: center;
-}/* check */
+    text-align: center;
+}
+
+
+/* check */
+
 
 /* new CSS added here*/
+
 .search_bar {
     font-size: 14px;
     width: 100%;
@@ -163,7 +211,7 @@ removed
 }
 
 .card-image img:hover {
-transform: scale(1.04, 1.04)
+    transform: scale(1.04, 1.04)
 }
 
 .rate {
