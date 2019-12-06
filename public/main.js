@@ -1,60 +1,3 @@
-function showAddBookModal() {
-    var addBookModal = document.getElementById('add-a-book-modal');
-    addBookModal.classList.remove('hidden');
-}
-
-function clearModalFields() {
-    document.getElementById('input-author').value = ""
-    document.getElementById('input-title').value = ""
-    document.getElementById('input-subject').value = ""
-    document.getElementById('input-date').value = ""
-    document.getElementById('input-photoURL').value = ""
-    document.getElementById('input-vendorURL').value = ""
-}
-
-function hideAddBookModal() {
-    var addBookModal = document.getElementById('add-a-book-modal');
-    addBookModal.classList.add('hidden');
-    clearModalFields();
-}
-
-function insertNewBook(title, photoURL, price) {
-    bookCardHTML = Handlebars.templates.bookCard({
-        title: title,
-        photoURL: photoURL
-    });
-
-    var bookCardContainer = document.querySelector('#books');
-    bookCardContainer.insertAdjacentHTML('beforeend', bookCardHTML);
-}
-
-function handleModalAccept() {
-    var author = document.getElementById('input-author').value.trim();
-    var title = document.getElementById('input-title').value.trim();
-    var subject = document.getElementById('input-subject').value.trim();
-    var date = document.getElementById('input-date').value.trim();
-    var photoURL = document.getElementById('input-photoURL').value.trim();
-    var vendorURL = document.getElementById('input-vendorURL').value.trim();
-
-    if (!author || !title || !subject || !date || !photoURL || !vendorURL) {
-        alert('One or more fields are blank!');
-        return;
-    }
-
-    insertNewBook(title, photoURL);
-    storeBook(title, photoURL);
-    hideAddBookModal();
-}
-
-function storeBook(title, photoURL) {
-    var req = new XMLHttpRequest();
-    req.open('POST', '/', true);
-    req.setRequestHeader('Content-type', 'application/json');
-    var body = JSON.stringify({ title: title, photoURL: photoURL });
-    req.send(body);
-}
-
-
 window.addEventListener('DOMContentLoaded', function() {
     var addBookButton = document.getElementById('add-a-book-button');
     if (addBookButton) {
@@ -73,26 +16,74 @@ window.addEventListener('DOMContentLoaded', function() {
 
 });
 
+function handleModalAccept() {
+    var newBook = getNewBookVals();
 
-// window.addEventListener('DOMContentLoaded', () => {
+    insertNewBook(newBook.title, newBook.photoURL);
+    storeBook(newBook.title, newBook.photoURL);
+    hideAddBookModal();
+}
 
-//     var sidenav = document.querySelectorAll('.sidenav');
-//     var modal = document.querySelectorAll('.modal');
-//     var date = document.querySelectorAll('.datepicker');
+function showAddBookModal() {
+    var addBookModal = document.getElementById('add-a-book-modal');
+    addBookModal.classList.remove('hidden');
+}
 
-//     M.Datepicker.init(date);
-//     M.Modal.init(modal);
-//     M.Sidenav.init(sidenav);
+function getNewBookVals() {
+    var bookVals = {
+        author: document.getElementById('input-author').value.trim(),
+        title: document.getElementById('input-title').value.trim(),
+        subject: document.getElementById('input-subject').value.trim(),
+        publishDate: document.getElementById('input-date').value.trim(),
+        photoURL: document.getElementById('input-photoURL').value.trim(),
+        vendorURL: document.getElementById('input-vendorURL').value.trim()
+    };
 
-//     if (window.innerWidth < 900) {
-//         let nav = document.getElementsByClassName('nav-wrapper')[0];
-//         let elem = document.createElement('a');
+    if (!bookVals.author || !bookVals.title || !bookVals.subject || !bookVals.publishDate || !bookVals.photoURL || !bookVals.vendorURL) {
+        alert('One or more fields are blank!');
+        return undefined;
+    }
+    return bookVals;
 
-//         elem.href = '#'
-//         elem.setAttribute('data-target', 'slide-out')
-//         elem.setAttribute('class', 'waves-effect sidenav-trigger')
+};
 
-//         elem.innerHTML = `<i class='material-icons' >menu</i>`
-//         nav.appendChild(elem)
-//     }
-// });
+function insertNewBook(title, photoURL) {
+    bookCardHTML = Handlebars.templates.bookCard({
+        title: title,
+        photoURL: photoURL
+    });
+
+    var bookCardContainer = document.querySelector('#books');
+    bookCardContainer.insertAdjacentHTML('beforeend', bookCardHTML);
+}
+
+function storeBook(title, photoURL) {
+    var req = new XMLHttpRequest();
+    req.open('POST', '/');
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load', function(event) {
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert("Error storing book data: " + message);
+        }
+    });
+    req.send(JSON.stringify({
+        title: title,
+        photoURL: photoURL
+    }));
+};
+
+function hideAddBookModal() {
+    var addBookModal = document.getElementById('add-a-book-modal');
+    addBookModal.classList.add('hidden');
+    clearModalFields();
+}
+
+function clearModalFields() {
+    document.getElementById('input-author').value = ""
+    document.getElementById('input-title').value = ""
+    document.getElementById('input-subject').value = ""
+    document.getElementById('input-date').value = ""
+    document.getElementById('input-photoURL').value = ""
+    document.getElementById('input-vendorURL').value = ""
+}
