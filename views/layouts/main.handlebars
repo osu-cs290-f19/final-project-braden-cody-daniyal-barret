@@ -17,47 +17,16 @@
     <script src="./templates/add-a-book-modal-template.js"></script>
     <script src="./templates/bookCardTemplate.js"></script>
     <script src="./templates/libraryPageTemplate.js"></script>
+    <script src="./templates/navbarTemplate.js"></script>
+    <script src="./templates/404pageTemplate.js"></script>
     <script src="./main.js"></script>
 
 
 </head>
 
 <body>
-    <div class="navbar-fixed">
-    <nav>
-        <div class="nav-wrapper">
 
-            <a href="#" class="brand-logo">OSU <span>BookTracker</span></a>
-
-            <button id="add-a-book-button" class="waves-effect waves-light btn right modal-trigger" data-target="add-book">ADD A BOOK</button>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="waves-effect">Account</a></li>
-                <li><a href="#" class="waves-effect"><i class="material-icons">favorite</i></a></li>
-                <li><a href="#" class="waves-effect"><i class="material-icons">add_shopping_cart</i></a></li>
-            </ul>
-            <a href="#">
-                <div class="input-field right search">
-                    <input id="search" type="search" required>
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                </div>
-            </a>
-        </div>
-    </nav>
-</div>
-
-<ul id="slide-out" class="sidenav">
-    <li style="height: 100px;">
-        <div class="user-view">
-            <div class="background" style="height: 100px; background: black; padding: 10px;">
-            </div>
-            <a href="#" class="sidenav-logo">OSU <span>BookTracker</span></a>
-        </div>
-    </li>
-    <li><a href="#" class="waves-effect">Account<i class="material-icons">account_circle</i> </a></li>
-    <li><a href="#" class="waves-effect">Favourites<i class="material-icons">favorite</i></a></li>
-    <li><a href="#" class="waves-effect">Cart<i class="material-icons">add_shopping_cart</i></a></li>
-</ul>
+    {{> navbar}}
 
     {{{body}}}
 
