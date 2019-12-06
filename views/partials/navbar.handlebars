@@ -1,3 +1,5 @@
+{{! old version}}
+{{!
 <nav class='navbar-fixed'>
     <div class="nav-wrapper">
 
@@ -19,3 +21,46 @@
         </a>
     </div>
 </nav>
+}}
+
+
+{{! new version}}
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+
+            <a href="#" class="brand-logo">OSU <span>BookTracker</span></a>
+
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#" class="waves-effect">Account</a></li>
+                <li><a href="#" class="waves-effect"><i class="material-icons">favorite</i></a></li>
+                <li><a href="#" class="waves-effect"><i class="material-icons">add_shopping_cart</i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="lower-nav">
+        <div class="nav-wrapper">
+            <button class="waves-effect waves-light btn right modal-trigger" data-target="add-book"> ADD A BOOK
+            </button>
+            <a href="#">
+                <div class="input-field right search">
+                    <input id="search" type="search" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </a>
+        </div>
+    </nav>
+</div>
+<ul id="slide-out" class="sidenav">
+    <li style="height: 100px;">
+        <div class="user-view">
+            <div class="background" style="height: 100px; background: black; padding: 10px;">
+            </div>
+            <a href="#" class="sidenav-logo">OSU <span>BookTracker</span></a>
+        </div>
+    </li>
+    <li><a href="#" class="waves-effect">Account<i class="material-icons">account_circle</i> </a></li>
+    <li><a href="#" class="waves-effect">Favorites<i class="material-icons">favorite</i></a></li>
+    <li><a href="#" class="waves-effect">Cart<i class="material-icons">add_shopping_cart</i></a></li>
+</ul>
