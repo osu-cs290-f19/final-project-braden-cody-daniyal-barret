@@ -168,6 +168,10 @@ removed
 removed
 */
 
+.hidden {
+    display: none;
+}
+
 
 /*404 page css*/
 
