@@ -19,16 +19,12 @@ app.get('/', function(req, res, next) {
 });
 
 app.post('/', function(req, res, next) {
-    console.log(req.body);
     if (req.body) {
         bookData.push(req.body);
-
         fs.writeFile('bookData.json', JSON.stringify(bookData), function() {
-            console.log('Wrote file to store');
             res.status(200);
         });
     } else {
-        console.log('API received an empty request body');
         res.status(404);
     }
 });
