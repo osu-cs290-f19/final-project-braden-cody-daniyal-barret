@@ -14,7 +14,29 @@ window.addEventListener('DOMContentLoaded', function() {
         acceptModalButton.addEventListener('click', handleModalAccept);
     }
 
+    var favButton = document.querySelectorAll('.favorite-button');
+    if (favButton) {
+        favButton.forEach(function(currentValue) {
+            currentValue.addEventListener('click', handleFavoriteButton);
+        });
+    };
 });
+
+function handleFavoriteButton(event) {
+    var bookId = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
+    var req = new XMLHttpRequest();
+    req.open('POST', '/favorites/' + bookId);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load', function(event) {
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert("Error processing request: " + message);
+        }
+    });
+    req.send(JSON.stringify({
+        id: bookId
+    }));
+}
 
 function handleModalAccept() {
     var newBook = getNewBookVals();
