@@ -118,7 +118,7 @@ nav {
 removed
 */
 
-@media only screen and (min-width: 100px) and (max-width: 992px) {
+@media only screen and (min-width: 500px) and (max-width: 992px) {
     /* check */
     .card-title {
         display: flex;
@@ -251,9 +251,4 @@ removed
     right: 0;
     padding-right: 5px;
     font-size: 14px;
-}
-
-.lower-nav {
-    top: 4.05em !important;
-    border-top: 2px solid #ff5c00 !important;
 }
