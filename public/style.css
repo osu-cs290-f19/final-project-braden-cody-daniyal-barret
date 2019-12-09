@@ -12,8 +12,6 @@ nav {
     width: 100px;
     line-height: 1;
     text-align: center;
-    margin-left: 10px;
-
 }
 
 
@@ -55,10 +53,20 @@ nav {
 
 .card-title {
     display: flex;
+    flex-direction: column;
     background: rgba(0, 0, 0, 0.726);
     width: 250px;
     padding: 10px !important;
     font-size: 16px !important;
+}
+
+#title {
+    padding: 0px;
+}
+
+#author {
+    font-size: 10px;
+    padding: 0px;
 }
 
 
@@ -109,7 +117,7 @@ nav {
 removed
 */
 
-@media only screen and (min-width: 100px) and (max-width: 992px) {
+@media only screen and (min-width: 100px) and (max-width: 900px) {
     /* check */
     .card-title {
         display: flex;
@@ -149,13 +157,6 @@ removed
     .card-image img {
         max-height: 320px;
         max-width: 250px;
-    }
-    .brand-logo {
-        font-family: 'Righteous', cursive !important;
-        width: 100px;
-        line-height: 1;
-        text-align: center;
-        margin-left: -42%;
     }
 }
 
