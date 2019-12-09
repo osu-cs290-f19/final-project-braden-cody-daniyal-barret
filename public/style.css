@@ -120,7 +120,7 @@ nav {
 removed
 */
 
-@media only screen and (min-width: 100px) and (max-width: 992px) {
+@media only screen and (min-width: 500px) and (max-width: 992px) {
     /* check */
     .card-title {
         display: flex;
