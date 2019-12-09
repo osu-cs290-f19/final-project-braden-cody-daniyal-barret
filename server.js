@@ -24,7 +24,7 @@ app.get('/', function(req, res, next) {
 app.post('/', function(req, res, next) {
     var newBook = req.body;
     if (newBook) {
-        newBook.id = bookData.length() + 1;
+        newBook.id = bookData.length + 1;
         bookData.push(newBook);
         fs.writeFile('bookData.json', JSON.stringify(bookData), function() {
             res.status(200).send('Data was successfully stored');
