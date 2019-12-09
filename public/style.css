@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 a{
   position: relative;
   font-family:tahoma;
@@ -156,4 +157,246 @@ a.book-title{
 
 #add-a-book-button:focus {
   outline: none;
+=======
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+nav {
+    background: #0d1128 !important;
+    color: white;
+}
+
+
+/* check */
+
+.brand-logo {
+    font-family: 'Righteous', cursive !important;
+    width: 100px;
+    line-height: 1;
+    text-align: center;
+}
+
+
+/* check */
+
+.sidenav-logo {
+    font-family: 'Righteous', cursive !important;
+    padding: 10% !important;
+    font-size: 20px;
+    margin: 10px;
+}
+
+
+/* check */
+
+.brand-logo>span {
+    font-size: 20px;
+    text-align: center;
+}
+
+
+/* check */
+
+.btn {
+    background: #ff5c00;
+    color: white;
+    margin: 10px;
+}
+
+
+/* check */
+
+.btn:hover {
+    background-color: #e97633;
+}
+
+
+/* check */
+
+.card-title {
+    display: flex;
+    background: rgba(0, 0, 0, 0.726);
+    width: 250px;
+    padding: 10px !important;
+    font-size: 16px !important;
+}
+
+
+/* check(new update) */
+
+.card-image img {
+    max-height: 330px;
+    max-width: 250px;
+    min-height: 250px;
+    transform: scale(1, 1);
+    transition: transform .5s;
+}
+
+
+/* check(new update) */
+
+.card-action>a {
+    color: #e97633 !important;
+    transition: color .5s;
+}
+
+
+/* check */
+
+.card-action>a:hover {
+    color: #ff5c00 !important;
+}
+
+
+/* check */
+
+.rating {
+    position: absolute;
+    z-index: 20;
+    color: rgb(255, 138, 0);
+    padding: 5px;
+    top: 0;
+}
+
+
+/* check */
+
+
+/*
+.rating>span {
+    font-size: 18px;
+}
+removed
+*/
+
+@media only screen and (min-width: 100px) and (max-width: 900px) {
+    /* check */
+    .card-title {
+        display: flex;
+        background: black;
+        opacity: .6;
+        width: 250px;
+    }
+    /* check(new update) */
+    .search {
+        width: 150px;
+    }
+    /* check */
+    .search>input {
+        width: 150px;
+    }
+    /* check */
+    .card-image img {
+        max-height: 320px;
+        max-width: 250px;
+    }
+    /* check(new update) */
+    /* new CSS added here*/
+    .col.s12.m4.l4.books {
+        display: inline-block;
+        vertical-align: top;
+        height: 320px;
+        width: 250px;
+        margin: 20px;
+    }
+    .book-card {
+        display: inline-block;
+        vertical-align: top;
+        height: 320px;
+        width: 250px;
+        margin: 20px;
+    }
+    .card-image img {
+        max-height: 320px;
+        max-width: 250px;
+    }
+}
+
+
+/*
+#sell-something-modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1010;
+    overflow: scroll;
+}
+
+.hidden {
+    display: none;
+}
+removed
+*/
+
+.hidden {
+    display: none;
+}
+
+
+/*404 page css*/
+
+.error-container {
+    text-align: center;
+}
+
+
+/* check */
+
+
+/* new CSS added here*/
+
+.search_bar {
+    font-size: 14px;
+    width: 100%;
+    margin-left: 10px;
+    padding: 3px;
+    border: 1px solid #dadada;
+    border-radius: 3px;
+}
+
+.col.s12.m4.l4.books {
+    display: inline-block;
+    vertical-align: top;
+    height: 320px;
+    width: 250px;
+    margin: 20px;
+}
+
+.card {
+    display: inline-block;
+    vertical-align: top;
+    height: 320px;
+    width: 250px;
+    margin: 20px;
+}
+
+.card-image img:hover {
+    transform: scale(1.04, 1.04)
+}
+
+.rate {
+    font-size: 16px;
+}
+
+.author {
+    position: absolute;
+    font-size: 12px;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    color: white;
+    background: #ff5e00ad;
+}
+
+.date {
+    position: absolute;
+    right: 0;
+    padding-right: 5px;
+    font-size: 14px;
+}
+
+.lower-nav {
+    top: 4.05em !important;
+    border-top: 2px solid #ff5c00 !important;
+>>>>>>> 6e0fe2bba9d4a44f42d4ded07e25d6c7a84c871c
 }
