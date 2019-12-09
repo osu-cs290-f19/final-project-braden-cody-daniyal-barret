@@ -12,6 +12,6 @@ templates['libraryPage'] = template({"1":function(container,depth0,helpers,parti
     + container.escapeExpression(((helper = (helper = helpers.pageHeader || (depth0 != null ? depth0.pageHeader : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"pageHeader","hash":{},"data":data,"loc":{"start":{"line":4,"column":8},"end":{"line":4,"column":22}}}) : helper)))
     + "</h4>\r\n    <div class=\"row books\" id=\"books\">\r\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.books : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":6,"column":8},"end":{"line":8,"column":17}}})) != null ? stack1 : "")
-    + "    </div>\r\n</div>";
+    + "    </div>\r\n    <div id=\"snackbar\">A book has been added to your favorites!</div>\r\n</div>";
 },"usePartial":true,"useData":true});
 })();

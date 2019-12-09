@@ -12,6 +12,7 @@ nav {
     width: 100px;
     line-height: 1;
     text-align: center;
+    margin-left: 10px;
 }
 
 
@@ -53,21 +54,33 @@ nav {
 
 .card-title {
     display: flex;
+    flex-direction: column;
     background: rgba(0, 0, 0, 0.726);
     width: 250px;
     padding: 10px !important;
     font-size: 16px !important;
 }
 
+#title {
+    padding: 0px;
+}
+
+#author {
+    font-size: 10px;
+    padding: 0px;
+}
+
 
 /* check(new update) */
 
 .card-image img {
-    max-height: 330px;
-    max-width: 250px;
-    min-height: 250px;
+    height: 250px;
+    max-width: 200px;
     transform: scale(1, 1);
     transition: transform .5s;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
 }
 
 
@@ -107,7 +120,7 @@ nav {
 removed
 */
 
-@media only screen and (min-width: 100px) and (max-width: 900px) {
+@media only screen and (min-width: 500px) and (max-width: 992px) {
     /* check */
     .card-title {
         display: flex;
@@ -137,7 +150,7 @@ removed
         width: 250px;
         margin: 20px;
     }
-    .card {
+    .book-card {
         display: inline-block;
         vertical-align: top;
         height: 320px;
@@ -147,6 +160,13 @@ removed
     .card-image img {
         max-height: 320px;
         max-width: 250px;
+    }
+    .brand-logo {
+        font-family: 'Righteous', cursive !important;
+        width: 100px;
+        line-height: 1;
+        text-align: center;
+        margin-left: -42%;
     }
 }
 
@@ -238,4 +258,93 @@ removed
 .lower-nav {
     top: 4.05em !important;
     border-top: 2px solid #ff5c00 !important;
+}
+
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+
+#snackbar {
+    visibility: hidden;
+    /* Hidden by default. Visible on click */
+    min-width: 250px;
+    /* Set a default minimum width */
+    margin-left: -125px;
+    /* Divide value of min-width by 2 */
+    background-color: #333;
+    /* Black background color */
+    color: #fff;
+    /* White text color */
+    text-align: center;
+    /* Centered text */
+    border-radius: 2px;
+    /* Rounded borders */
+    padding: 16px;
+    /* Padding */
+    position: fixed;
+    /* Sit on top of the screen */
+    z-index: 1;
+    /* Add a z-index if needed */
+    left: 50%;
+    /* Center the snackbar */
+    bottom: 30px;
+    /* 30px from the bottom */
+}
+
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+
+#snackbar.show {
+    visibility: visible;
+    /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+
+/* Animations to fade the snackbar in and out */
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
