@@ -20,7 +20,17 @@ window.addEventListener('DOMContentLoaded', function() {
             currentValue.addEventListener('click', handleFavoriteButton);
         });
     };
+
+    var searchText = document.getElementById('search');
+    if(searchText) {
+        searchText.addEventListener('keypress', )
+    }
 });
+
+function keyPress(event) {
+    var theKey = event.key;
+    console.log('the key pressed is:', theKey);
+}
 
 function handleFavoriteButton(event) {
     var bookId = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');

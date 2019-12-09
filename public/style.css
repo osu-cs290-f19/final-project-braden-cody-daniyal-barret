@@ -257,3 +257,10 @@ removed
     top: 4.05em !important;
     border-top: 2px solid #ff5c00 !important;
 }
+
+.input-field.right.search #search {
+    max-height: 30px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 2px 1px #888888;
+}
