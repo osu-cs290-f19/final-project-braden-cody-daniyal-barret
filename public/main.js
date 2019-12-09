@@ -36,6 +36,7 @@ function handleFavoriteButton(event) {
     req.send(JSON.stringify({
         id: bookId
     }));
+    window.location.reload(true);
 }
 
 function handleModalAccept() {
