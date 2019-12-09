@@ -12,6 +12,8 @@ nav {
     width: 100px;
     line-height: 1;
     text-align: center;
+    margin-left: 10px;
+
 }
 
 
@@ -107,7 +109,7 @@ nav {
 removed
 */
 
-@media only screen and (min-width: 100px) and (max-width: 900px) {
+@media only screen and (min-width: 100px) and (max-width: 992px) {
     /* check */
     .card-title {
         display: flex;
@@ -147,6 +149,13 @@ removed
     .card-image img {
         max-height: 320px;
         max-width: 250px;
+    }
+    .brand-logo {
+        font-family: 'Righteous', cursive !important;
+        width: 100px;
+        line-height: 1;
+        text-align: center;
+        margin-left: -42%;
     }
 }
 
