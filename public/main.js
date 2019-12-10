@@ -35,6 +35,14 @@ function keyPress(event) {
     console.log('the word is:', wordFromKey);
 }
 
+function showSnackbar() {
+    var snackbar = document.getElementById("snackbar");
+
+    snackbar.className = "show";
+
+    setTimeout(function() { console.log('FIRED!!!'); }, 3000);
+}
+
 function handleFavoriteButton(event) {
     var bookId = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
     var req = new XMLHttpRequest();
@@ -49,6 +57,8 @@ function handleFavoriteButton(event) {
     req.send(JSON.stringify({
         id: bookId
     }));
+    //window.location.reload(false);
+    showSnackbar();
 }
 
 function handleModalAccept() {
@@ -69,15 +79,25 @@ function getNewBookVals() {
         author: document.getElementById('input-author').value.trim(),
         title: document.getElementById('input-title').value.trim(),
         subject: document.getElementById('input-subject').value.trim(),
-        publishDate: document.getElementById('input-date').value.trim(),
         photoURL: document.getElementById('input-photoURL').value.trim(),
-        vendorURL: document.getElementById('input-vendorURL').value.trim()
+        favorite: false
     };
 
-    if (!bookVals.author || !bookVals.title || !bookVals.subject || !bookVals.publishDate || !bookVals.photoURL || !bookVals.vendorURL) {
+    if (!bookVals.author || !bookVals.title || !bookVals.subject || !bookVals.photoURL) {
         alert('One or more fields are blank!');
         return undefined;
     }
+
+    var vendorURL = "https://www.amazon.com/s?k=";
+    var titleWords = bookVals.title.split(' ');
+    for (var i = 0; i < titleWords.length; i++) {
+        vendorURL += titleWords[i].toLowerCase();
+        if (i !== titleWords.length) {
+            vendorURL += '+';
+        }
+    }
+    bookVals.vendorURL += "&ref=nb_sb_noss_2";
+
     return bookVals;
 
 };
@@ -118,7 +138,5 @@ function clearModalFields() {
     document.getElementById('input-author').value = ""
     document.getElementById('input-title').value = ""
     document.getElementById('input-subject').value = ""
-    document.getElementById('input-date').value = ""
     document.getElementById('input-photoURL').value = ""
-    document.getElementById('input-vendorURL').value = ""
 }

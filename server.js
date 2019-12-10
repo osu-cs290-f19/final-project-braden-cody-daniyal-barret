@@ -24,7 +24,7 @@ app.get('/', function(req, res, next) {
 app.post('/', function(req, res, next) {
     var newBook = req.body;
     if (newBook) {
-        newBook.id = bookData.length() + 1;
+        newBook.id = bookData.length + 1;
         bookData.push(newBook);
         fs.writeFile('bookData.json', JSON.stringify(bookData), function() {
             res.status(200).send('Data was successfully stored');
@@ -41,16 +41,28 @@ app.get('/favorites', function(req, res, next) {
 });
 
 app.post('/favorites/:id', function(req, res, next) {
-    console.log(typeof(bookData));
-    for (var i = 0; i < bookData.length(); i++) {
-        if (bookData[i].id == req.params.id) {
-            bookData[i].favorite = !bookData[i].favorite;
-            res.status(200).send('Object was successfully updated');
-            return;
-        }
-    }
-    res.status(404).send('Could not update object');
+    var idObject = bookData.reduce(function(map, obj) {
+        map[obj.id] = obj;
+        return map;
+    }, {});
+    var updatedBook = idObject[Number(req.params.id)];
+    updatedBook.favorite = !updatedBook.favorite;
+    idObject[Number(req.params.id)] = updatedBook;
+    newBookData = convertObjectToArray(idObject);
+    fs.writeFile('bookData.json', JSON.stringify(newBookData), function() {
+        return;
+    });
 });
+
+function convertObjectToArray(idObject) {
+    var data = [];
+    for (var bookID in idObject) {
+        var book = idObject[Number(bookID)];
+        data.push(book);
+    }
+    return data;
+}
+
 
 function loadFavs() {
     var favorites = [];
