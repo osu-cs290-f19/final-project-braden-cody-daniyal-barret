@@ -214,15 +214,42 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function replaceAt(searchString, indexOfLastChar, chr) {
+    if(indexOfLastChar > searchString.length-1) return searchString;
+    return searchString.substr(0,indexOfLastChar) + chr + searchString.substr(indexOfLastChar+1);
+}
+
+//string to hold the searchbar text value
 wordFromKeys = " ";
+
+//function that grabs the searchbar text value
 function keyPress(event){
+
+    //grabs the stringified version of the unicode keypressed
     var theKey = " ";
     theKey = String.fromCharCode(event.keyCode);
-    console.log('the key pressed is:', theKey);
-
-    console.log('the key pressed (string)is:', theKey.value);
-    wordFromKeys = wordFromKeys.concat(theKey);
-    //var wordFromKeys = thekey.concat('working');
-    //console.log('the key pressed is:', theKey);
-    console.log('the word is:', wordFromKeys);
+    var theKeyUni = (event.keyCode);
+    console.log('the keypressed is:', theKey);
+    /*
+    if the user presses delete it will remove the last char in the string
+    reflecting the value in the actual searchbar
+    */
+    if(event.keyCode == 8)
+    {
+        var lastChar = wordFromKeys.substr(wordFromKeys.length - 1);
+        console.log('the last char is:', lastChar)
+        var lastCharIndex = (wordFromKeys.length - 1);
+        console.log('the last charindex is:', lastCharIndex)
+        wordFromKeys = replaceAt(wordFromKeys , lastCharIndex, '');
+        console.log('the new word is:', wordFromKeys);
+    }
+    /*
+    if the user does not press delete it will, then otherwise concatinate 
+    the entered words from the searchbar
+    */
+    else{
+        if (/[a-zA-Z0-9-_ ]/.test(theKey)){
+            wordFromKeys = wordFromKeys.concat(theKey);
+        }
+    }
 }
