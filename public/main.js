@@ -214,6 +214,67 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function passFilter(book)
+{
+    if(wordFromKeys)
+    {
+        var bookTitle = book.title.toLowerCase();
+        var filterText =  wordFromKeys.toLowerCase();
+        console.log('book title is:', bookTitle);
+        console.log('filter text is:', filterText);
+        if(bookTitle.indexOf(filterText) === -1)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function searchingBar()
+{
+    var bookElms = document.getElementById('books');
+    console.log('the book elms: ', bookElms);
+    var bookCard = document.getElementsByClassName('card');
+    console.log('the card name is:', bookCard);
+    
+    
+    var postContainer = document.getElementById('books');
+    while(postContainer.lastChild)
+    {
+        postContainer.removeChild(postContainer.lastChild);
+    }
+    
+ 
+    allBooks.forEach(function(book)
+    {
+        /*
+        var postContainer = document.getElementById('books');
+        while(postContainer.lastChild)
+        {
+            postContainer.removeChild(postContainer.lastChild);
+        }
+        */
+
+        if(passFilter(book) === true)
+        {
+            /*
+            var postContainer = document.getElementById('books');
+            while(postContainer.lastChild)
+            {
+                postContainer.removeChild(postContainer.lastChild);
+            } 
+            */
+            console.log('the current book is:', book);
+            console.log('working filter!!');
+            insertNewBook(book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
+            //console.log('search book.title:', book.title);
+        }
+    })
+    //console.log('the book elms: ', bookElms.getAttribute('data-title'));
+    //console.log('the book id is:', );
+}
+
 function replaceAt(searchString, indexOfLastChar, chr) {
     if(indexOfLastChar > searchString.length-1) return searchString;
     return searchString.substr(0,indexOfLastChar) + chr + searchString.substr(indexOfLastChar+1);
@@ -252,4 +313,5 @@ function keyPress(event){
             wordFromKeys = wordFromKeys.concat(theKey);
         }
     }
+    searchingBar();
 }
