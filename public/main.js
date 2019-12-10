@@ -207,4 +207,18 @@ window.addEventListener('DOMContentLoaded', function() {
             currentValue.addEventListener('click', handleFavoriteClick);
         });
     };
+
+    var searchText = document.getElementById('search');
+    if(searchText){
+        //searchText.addEventListener('keypress')
+    }
 });
+
+wordFromKeys = ' ';
+function keyPress(event){
+    theKey = ' ';
+    theKey = event.key;
+    //wordFromKey.concat(theKey);
+    console.log('the key pressed is:', theKey);
+    //console.log('the word is:', wordFromKey);
+}
