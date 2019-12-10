@@ -8,7 +8,7 @@ var exphbs = require('express-handlebars');
 var bookData = require('./bookData');
 
 var app = express();
-var port = process.env.PORT || 8991;
+var port = process.env.PORT || 8000;
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main', layoutsDir: path.join(__dirname, 'views', 'layouts') }));
 app.set('view engine', 'handlebars');
