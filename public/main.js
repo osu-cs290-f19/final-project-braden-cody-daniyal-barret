@@ -4,8 +4,9 @@ var favorites = [];
 // On adding new book via modal, this function grabs the data values from the modal, inserts it into the DOM, and sends it to the back end for storage
 function handleModalAccept() {
     var newBook = getNewBookValsFromModal();
-    insertNewBook(newBook.title, newBook.author, newBook.subject, newBook.photoURL, newBook.photoURL, newBook.vendorURL);
-    storeBook(newBook.title, newBook.author, newBook.photoURL, newBook.subject);
+    insertNewBook(newBook.id, newBook.title, newBook.author, newBook.subject, newBook.photoURL, newBook.vendorURL, newBook.favorite);
+    window.location.reload(false);
+    storeBook(newBook.title, newBook.author, newBook.photoURL, newBook.subject, newBook.vendorURL, newBook.favorite);
     hideAddBookModal();
 }
 
@@ -22,12 +23,15 @@ function getNewBookValsFromModal() {
         alert('One or more fields are blank!');
         return undefined;
     }
+    console.log(bookVals.title)
     bookVals.vendorURL = createAmazonURL(bookVals.title);
+    console.log('url: ' + bookVals.vendorURL);
     return bookVals;
 };
 
 // Creates a URL to an Amazon search for the input title
 function createAmazonURL(title) {
+    console.log('creating amazon url');
     var titleWords = title.split(' ');
     var vendorURL = "https://www.amazon.com/s?k=";
     for (var i = 0; i < titleWords.length; i++) {
@@ -41,8 +45,9 @@ function createAmazonURL(title) {
 }
 
 // Creates a new bookCard with Handlebars and inserts it into DOM
-function insertNewBook(title, author, subject, photoURL, vendorURL, favorite) {
+function insertNewBook(id, title, author, subject, photoURL, vendorURL, favorite) {
     bookCardHTML = Handlebars.templates.bookCard({
+        id: id,
         title: title,
         author: author,
         subject: subject,
@@ -56,7 +61,7 @@ function insertNewBook(title, author, subject, photoURL, vendorURL, favorite) {
 }
 
 // Sends information for a new book to server to be stored in JSON file
-function storeBook(title, author, photoURL, subject) {
+function storeBook(title, author, photoURL, subject, vendorURL, favorite) {
     var req = new XMLHttpRequest();
     req.open('POST', '/');
     req.setRequestHeader('Content-Type', 'application/json');
@@ -70,7 +75,9 @@ function storeBook(title, author, photoURL, subject) {
         title: title,
         author: author,
         photoURL: photoURL,
-        subject: subject
+        subject: subject,
+        vendorURL: vendorURL,
+        favorite: favorite
     }));
 };
 
@@ -130,8 +137,10 @@ function handleFavoriteClick(event) {
         snackbarMessage += " was removed from your favorites!";
     }
 
+    // If the user is on the 'favorites' page, display only 'favorited' books and re-add event listener to 'favorite' buttons
     if (document.getElementById('content-container').getAttribute('page') == 'favorites') {
         renderFavorites();
+        applyFavoriteEventListeners();
     }
     showSnackbar(snackbarMessage);
 }
@@ -143,8 +152,19 @@ function renderFavorites() {
         bookContainer.removeChild(bookContainer.lastChild);
     }
     favorites.forEach(function(book) {
-        insertNewBook(book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
+        insertNewBook(book.id, book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
     })
+}
+
+// Removes and adds favorite click handler event listener to all books
+function applyFavoriteEventListeners() {
+    var favButton = document.querySelectorAll('.favorite-button');
+    if (favButton) {
+        favButton.forEach(function(currentValue) {
+            currentValue.removeEventListener('click', handleFavoriteClick);
+            currentValue.addEventListener('click', handleFavoriteClick);
+        });
+    };
 }
 
 // Shows snackbar with message about which book what 'favorited' or 'unfavorited'
@@ -165,7 +185,7 @@ function parseBookElm(bookElm) {
         author: bookElm.getAttribute('data-author'),
         subject: bookElm.getAttribute('data-subject'),
         vendorURL: bookElm.getAttribute('data-vendorURL'),
-        favorite: Boolean(bookElm.getAttribute('data-favorite'))
+        favorite: bookElm.getAttribute('data-favorite') == 'true'
     };
 
     var bookImgElm = bookElm.querySelector('.card-image img');
@@ -182,7 +202,7 @@ window.addEventListener('DOMContentLoaded', function() {
         var book = parseBookElm(bookElms[i]);
         allBooks.push(book);
         if (book.favorite === true) {
-            favorites.push(bookElms[i]);
+            favorites.push(book);
         }
     }
 
@@ -209,21 +229,21 @@ window.addEventListener('DOMContentLoaded', function() {
     };
 
     var searchText = document.getElementById('search');
-    if(searchText){
+    if (searchText) {
         //searchText.addEventListener('keypress')
     }
 });
 
 function replaceAt(searchString, indexOfLastChar, chr) {
-    if(indexOfLastChar > searchString.length-1) return searchString;
-    return searchString.substr(0,indexOfLastChar) + chr + searchString.substr(indexOfLastChar+1);
+    if (indexOfLastChar > searchString.length - 1) return searchString;
+    return searchString.substr(0, indexOfLastChar) + chr + searchString.substr(indexOfLastChar + 1);
 }
 
 //string to hold the searchbar text value
 wordFromKeys = " ";
 
 //function that grabs the searchbar text value
-function keyPress(event){
+function keyPress(event) {
 
     //grabs the stringified version of the unicode keypressed
     var theKey = " ";
@@ -234,21 +254,20 @@ function keyPress(event){
     if the user presses delete it will remove the last char in the string
     reflecting the value in the actual searchbar
     */
-    if(event.keyCode == 8)
-    {
+    if (event.keyCode == 8) {
         var lastChar = wordFromKeys.substr(wordFromKeys.length - 1);
         console.log('the last char is:', lastChar)
         var lastCharIndex = (wordFromKeys.length - 1);
         console.log('the last charindex is:', lastCharIndex)
-        wordFromKeys = replaceAt(wordFromKeys , lastCharIndex, '');
+        wordFromKeys = replaceAt(wordFromKeys, lastCharIndex, '');
         console.log('the new word is:', wordFromKeys);
     }
     /*
     if the user does not press delete it will, then otherwise concatinate 
     the entered words from the searchbar
     */
-    else{
-        if (/[a-zA-Z0-9-_ ]/.test(theKey)){
+    else {
+        if (/[a-zA-Z0-9-_ ]/.test(theKey)) {
             wordFromKeys = wordFromKeys.concat(theKey);
         }
     }
