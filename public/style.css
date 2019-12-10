@@ -260,13 +260,12 @@ removed
     border-top: 2px solid #ff5c00 !important;
 }
 
-<<<<<<< HEAD
 .input-field.right.search #search {
     max-height: 30px;
     background-color: white;
     border-radius: 4px;
     box-shadow: 2px 1px #888888;
-=======
+}
 
 /* The snackbar - position it at the bottom and in the middle of the screen */
 
