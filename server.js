@@ -40,13 +40,14 @@ app.get('/favorites', function(req, res, next) {
     res.status(200);
 });
 
-// A post request to this path will flip the value of 'favorite' for the book with the given id
+// A post request to this path will flip the value of 'favorite' for the book with the given id in the JSON storage file
 app.post('/favorites/:id', function(req, res, next) {
+    var id = Number(req.params.id);
     var idObject = bookData.reduce(function(map, obj) {
         map[obj.id] = obj;
         return map;
     }, {});
-    var updatedBook = idObject[Number(req.params.id)];
+    var updatedBook = idObject[id];
     updatedBook.favorite = !updatedBook.favorite;
     idObject[Number(req.params.id)] = updatedBook;
     newBookData = convertObjectToArray(idObject);
