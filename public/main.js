@@ -214,11 +214,15 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-wordFromKeys = ' ';
+wordFromKeys = " ";
 function keyPress(event){
-    theKey = ' ';
-    theKey = event.key;
-    //wordFromKey.concat(theKey);
+    var theKey = " ";
+    theKey = String.fromCharCode(event.keyCode);
     console.log('the key pressed is:', theKey);
-    //console.log('the word is:', wordFromKey);
+
+    console.log('the key pressed (string)is:', theKey.value);
+    wordFromKeys = wordFromKeys.concat(theKey);
+    //var wordFromKeys = thekey.concat('working');
+    //console.log('the key pressed is:', theKey);
+    console.log('the word is:', wordFromKeys);
 }
