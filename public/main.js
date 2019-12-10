@@ -26,10 +26,13 @@ window.addEventListener('DOMContentLoaded', function() {
         searchText.addEventListener('keypress', )
     }
 });
-
+wordFromKeys = '';
 function keyPress(event) {
-    var theKey = event.key;
+    theKey = ' ';
+    theKey = event.key;
+    wordFromKey.concat(theKey);
     console.log('the key pressed is:', theKey);
+    console.log('the word is:', wordFromKey);
 }
 
 function handleFavoriteButton(event) {

@@ -5,6 +5,8 @@ templates['bookCard'] = template({"compiler":[8,">= 4.3.0"],"main":function(cont
 
   return "<div class=\"col s12 m4 l4 books\">\n    <div class=\"card\" data-id="
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":2,"column":30},"end":{"line":2,"column":36}}}) : helper)))
+    + " data-title="
+    + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":2,"column":48},"end":{"line":2,"column":57}}}) : helper)))
     + ">\n        <div class=\"card-image\">\n            <img src=\""
     + alias4(((helper = (helper = helpers.photoURL || (depth0 != null ? depth0.photoURL : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"photoURL","hash":{},"data":data,"loc":{"start":{"line":4,"column":22},"end":{"line":4,"column":34}}}) : helper)))
     + "\">\n            <span class='card-title'>\n                <span id='title'>"
