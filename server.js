@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 
 app.get('/', function(req, res, next) {
-    res.render('partials/libraryPage', { pageHeader: 'Books in your library', books: bookData });
+    res.render('partials/libraryPage', { page: 'library', pageHeader: 'Books in your library', books: bookData });
     res.status(200);
 });
 
@@ -36,10 +36,11 @@ app.post('/', function(req, res, next) {
 
 
 app.get('/favorites', function(req, res, next) {
-    res.render('partials/libraryPage', { pageHeader: 'Your favorites', books: loadFavs() });
+    res.render('partials/libraryPage', { page: 'favorites', pageHeader: 'Your favorites', books: loadFavs() });
     res.status(200);
 });
 
+// A post request to this path will flip the value of 'favorite' for the book with the given id
 app.post('/favorites/:id', function(req, res, next) {
     var idObject = bookData.reduce(function(map, obj) {
         map[obj.id] = obj;

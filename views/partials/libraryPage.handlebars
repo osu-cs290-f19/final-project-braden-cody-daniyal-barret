@@ -1,11 +1,11 @@
 {{> add-a-book-modal}}
 
-<div class="container">
+<div class="container" id="content-container" page={{page}}>
     <h4>{{pageHeader}}</h4>
     <div class="row books" id="books">
         {{#each books}}
             {{> bookCard}}
         {{/each}}
     </div>
-    <div id="snackbar">A book has been added to your favorites!</div>
+    <div id="snackbar"></div>
 </div>
