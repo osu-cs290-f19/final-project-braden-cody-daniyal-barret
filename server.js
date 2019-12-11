@@ -34,6 +34,20 @@ app.post('/', function(req, res, next) {
     }
 });
 
+app.post('/edit/:id', function(req, res, next) {
+    var id = Number(req.params.id);
+    var idObject = bookData.reduce(function(map, obj) {
+        map[obj.id] = obj;
+        return map;
+    }, {});
+
+    idObject[id] = req.body;
+    var newData = convertObjectToArray(idObject);
+    fs.writeFile('bookData.json', JSON.stringify(newData), function() {
+        return;
+    })
+});
+
 
 app.get('/favorites', function(req, res, next) {
     res.render('partials/libraryPage', { page: 'favorites', pageHeader: 'Your favorites', books: loadFavs() });
@@ -49,7 +63,7 @@ app.post('/favorites/:id', function(req, res, next) {
     }, {});
     var updatedBook = idObject[id];
     updatedBook.favorite = !updatedBook.favorite;
-    idObject[Number(req.params.id)] = updatedBook;
+    idObject[id] = updatedBook;
     newBookData = convertObjectToArray(idObject);
     fs.writeFile('bookData.json', JSON.stringify(newBookData), function() {
         return;
@@ -59,8 +73,7 @@ app.post('/favorites/:id', function(req, res, next) {
 function convertObjectToArray(idObject) {
     var data = [];
     for (var bookID in idObject) {
-        var book = idObject[Number(bookID)];
-        data.push(book);
+        data.push(idObject[Number(bookID)]);
     }
     return data;
 }

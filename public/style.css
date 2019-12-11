@@ -4,9 +4,6 @@ nav {
     color: white;
 }
 
-
-/* check */
-
 .brand-logo {
     font-family: 'Righteous', cursive !important;
     width: 100px;
@@ -15,9 +12,6 @@ nav {
     margin-left: 10px;
 }
 
-
-/* check */
-
 .sidenav-logo {
     font-family: 'Righteous', cursive !important;
     padding: 10% !important;
@@ -25,16 +19,15 @@ nav {
     margin: 10px;
 }
 
-
-/* check */
-
 .brand-logo>span {
     font-size: 20px;
     text-align: center;
 }
 
 
-/* check */
+/* .edit-modal-label {
+    font-size: 10px;
+} */
 
 .btn {
     background: #ff5c00;
@@ -42,15 +35,9 @@ nav {
     margin: 10px;
 }
 
-
-/* check */
-
 .btn:hover {
     background-color: #e97633;
 }
-
-
-/* check */
 
 .card-title {
     display: flex;
@@ -70,9 +57,6 @@ nav {
     padding: 0px;
 }
 
-
-/* check(new update) */
-
 .card-image img {
     height: 250px;
     max-width: 200px;
@@ -82,9 +66,6 @@ nav {
     margin-right: auto;
     padding-top: 10px;
 }
-
-
-/* check(new update) */
 
 .card-action {
     display: flex;
@@ -96,15 +77,9 @@ nav {
     transition: color .5s;
 }
 
-
-/* check */
-
 .card-action>a:hover {
     color: #ff5c00 !important;
 }
-
-
-/* check */
 
 .rating {
     position: absolute;
@@ -114,40 +89,23 @@ nav {
     top: 0;
 }
 
-
-/* check */
-
-
-/*
-.rating>span {
-    font-size: 18px;
-}
-removed
-*/
-
 @media only screen and (min-width: 500px) and (max-width: 992px) {
-    /* check */
     .card-title {
         display: flex;
         background: black;
         opacity: .6;
         width: 250px;
     }
-    /* check(new update) */
     .search {
         width: 150px;
     }
-    /* check */
     .search>input {
         width: 150px;
     }
-    /* check */
     .card-image img {
         max-height: 320px;
         max-width: 250px;
     }
-    /* check(new update) */
-    /* new CSS added here*/
     .col.s12.m4.l4.books {
         display: inline-block;
         vertical-align: top;
@@ -175,24 +133,6 @@ removed
     }
 }
 
-
-/*
-#sell-something-modal {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1010;
-    overflow: scroll;
-}
-
-.hidden {
-    display: none;
-}
-removed
-*/
-
 .hidden {
     display: none;
 }
@@ -203,12 +143,6 @@ removed
 .error-container {
     text-align: center;
 }
-
-
-/* check */
-
-
-/* new CSS added here*/
 
 .search_bar {
     font-size: 14px;

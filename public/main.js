@@ -26,9 +26,7 @@ function getNewBookValsFromModal() {
         alert('One or more fields are blank!');
         return undefined;
     }
-    console.log(bookVals.title)
     bookVals.vendorURL = createAmazonURL(bookVals.title);
-    console.log('url: ' + bookVals.vendorURL);
     return bookVals;
 };
 
@@ -117,9 +115,7 @@ function handleFavoriteClick(event) {
             alert("Error processing request: " + message);
         }
     });
-    req.send(JSON.stringify({
-        id: bookId
-    }));
+    req.send();
 
     favorites = [];
     var favorited; // A boolean value to keep track of whether the book was 'favorited' or 'unfavorited'
@@ -249,4 +245,98 @@ window.addEventListener('DOMContentLoaded', function() {
             currentValue.addEventListener('click', handleFavoriteClick);
         });
     };
+
+    var editButtons = document.querySelectorAll('.edit-button');
+    if (editButtons) {
+        editButtons.forEach(function(currentValue) {
+            currentValue.addEventListener('click', handleEditButtonClick);
+        });
+    }
+
+    var acceptEditButton = document.getElementById('accept-edit-button');
+    if (acceptEditButton) {
+        acceptEditButton.addEventListener('click', handleEditModalAccept)
+    }
+
+    var cancelEditButton = document.getElementById('cancel-edit-button');
+    if (cancelEditButton) {
+        cancelEditButton.addEventListener('click', hideEditBookModal)
+    }
 });
+
+function handleEditModalAccept(event) {
+    var bookId = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
+    var isFavorite = event.target.parentNode.parentNode.parentNode.getAttribute('data-favorite');
+    allBooks = allBooks.filter(book => Number(bookId) !== Number(book.id));
+    var editedBook = getEditedBookValsFromModal(bookId, isFavorite);
+    allBooks.push(editedBook);
+    removeBooksFromDOM();
+    hideEditBookModal();
+    allBooks.forEach(function(book) {
+        insertNewBook(book.id, book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
+    });
+
+    var req = new XMLHttpRequest();
+    req.open('POST', '/edit/' + bookId);
+    req.setRequestHeader('Content-Type', 'application/json');
+    req.addEventListener('load', function(event) {
+        if (event.target.status !== 200) {
+            var message = event.target.response;
+            alert("Error processing request: " + message);
+        }
+    });
+    req.send(JSON.stringify(editedBook));
+}
+
+
+function handleEditButtonClick(event) {
+    var bookId = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
+    for (let book of allBooks) {
+        if (Number(book.id) === Number(bookId)) {
+            initializeEditBookModalValues(book);
+        }
+    }
+    showEditBookModal();
+}
+
+function initializeEditBookModalValues(book) {
+    document.getElementById('edit-title').value = book.title;
+    document.getElementById('edit-author').value = book.author;
+    document.getElementById('edit-subject').value = book.subject;
+    document.getElementById('edit-photoURL').value = book.photoURL;
+}
+
+function showEditBookModal() {
+    var editBookModal = document.getElementById('edit-book-modal');
+    editBookModal.classList.remove('hidden');
+}
+
+function hideEditBookModal() {
+    var editBookModal = document.getElementById('edit-book-modal');
+    editBookModal.classList.add('hidden');
+    clearEditBookModalFields();
+}
+
+function clearEditBookModalFields() {
+    document.getElementById('edit-author').value = ""
+    document.getElementById('edit-title').value = ""
+    document.getElementById('edit-subject').value = ""
+    document.getElementById('edit-photoURL').value = ""
+}
+
+function getEditedBookValsFromModal(id, isFavorite) {
+    var bookVals = {
+        id: id,
+        author: document.getElementById('edit-author').value.trim(),
+        title: document.getElementById('edit-title').value.trim(),
+        subject: document.getElementById('edit-subject').value.trim(),
+        photoURL: document.getElementById('edit-photoURL').value.trim(),
+        favorite: isFavorite
+    };
+    if (!bookVals.author || !bookVals.title || !bookVals.subject || !bookVals.photoURL) {
+        alert('One or more fields are blank!');
+        return undefined;
+    }
+    bookVals.vendorURL = createAmazonURL(bookVals.title);
+    return bookVals;
+};
