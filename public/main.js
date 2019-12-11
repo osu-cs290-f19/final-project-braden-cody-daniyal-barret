@@ -291,18 +291,22 @@ function handleEditModalAccept(event) {
 
 function handleEditButtonClick(event) {
     var bookId = event.target.parentNode.parentNode.parentNode.getAttribute('data-id');
+    showEditBookModal();
     for (let book of allBooks) {
         if (Number(book.id) === Number(bookId)) {
             initializeEditBookModalValues(book);
         }
     }
-    showEditBookModal();
 }
 
 function initializeEditBookModalValues(book) {
+    document.getElementById('edit-title').focus();
     document.getElementById('edit-title').value = book.title;
+    document.getElementById('edit-author').focus();
     document.getElementById('edit-author').value = book.author;
+    document.getElementById('edit-subject').focus();
     document.getElementById('edit-subject').value = book.subject;
+    document.getElementById('edit-photoURL').focus();
     document.getElementById('edit-photoURL').value = book.photoURL;
 }
 
