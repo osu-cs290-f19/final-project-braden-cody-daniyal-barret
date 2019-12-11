@@ -2,8 +2,6 @@ var allBooks = [];
 var favorites = [];
 searchText = " ";
 
-// ================================= Modal stuff ================================= //
-
 // On adding new book via modal, this function grabs the data values from the modal, inserts it into the DOM, and sends it to the back end for storage
 function handleModalAccept() {
     var newBook = getNewBookValsFromModal();
@@ -101,8 +99,6 @@ function clearModalFields() {
     document.getElementById('input-subject').value = ""
     document.getElementById('input-photoURL').value = ""
 }
-
-// ================================= Favorites stuff ================================= //
 
 /* When a heart is clicked in a bookCard, this function sends a request to the server to change the 'favorite' status in JSON file
    of the book for which it was clicked. It then either adds or removes the bookCard from the favorites page and shows a snackbar message */
@@ -203,8 +199,47 @@ function parseBookElm(bookElm) {
     return book;
 }
 
-// ================================= Searchbar stuff ================================= //
+window.addEventListener('DOMContentLoaded', function() {
 
+    // Initializes the allBooks array and the favorites array by filling them with books in the DOM
+    var bookElms = document.getElementsByClassName('card');
+    for (var i = 0; i < bookElms.length; i++) {
+        var book = parseBookElm(bookElms[i]);
+        allBooks.push(book);
+        if (book.favorite === true) {
+            favorites.push(book);
+        }
+    }
+
+    var addBookButton = document.getElementById('add-a-book-button');
+    if (addBookButton) {
+        addBookButton.addEventListener('click', showAddBookModal);
+    }
+
+    var cancelModalButton = document.getElementById('cancel-modal-button');
+    if (cancelModalButton) {
+        cancelModalButton.addEventListener('click', hideAddBookModal);
+    }
+
+    var acceptModalButton = document.getElementById('accept-modal-button');
+    if (acceptModalButton) {
+        acceptModalButton.addEventListener('click', handleModalAccept);
+    }
+
+    var favButton = document.querySelectorAll('.favorite-button');
+    if (favButton) {
+        favButton.forEach(function(currentValue) {
+            currentValue.addEventListener('click', handleFavoriteClick);
+        });
+    };
+
+    var searchbar = document.getElementById('search');
+    if (searchbar) {
+        searchText.addEventListener('keypress', handleSearchKeystroke);
+    }
+});
+
+//function that grabs the searchbar text value
 function handleSearchKeystroke(event) {
     getSearchText();
     applyTextFilter();
@@ -247,38 +282,3 @@ function searchMatched(book) {
     }
     return true;
 }
-
-window.addEventListener('DOMContentLoaded', function() {
-
-    // Initializes the allBooks array and the favorites array by filling them with books in the DOM
-    var bookElms = document.getElementsByClassName('card');
-    for (var i = 0; i < bookElms.length; i++) {
-        var book = parseBookElm(bookElms[i]);
-        allBooks.push(book);
-        if (book.favorite === true) {
-            favorites.push(book);
-        }
-    }
-
-    var addBookButton = document.getElementById('add-a-book-button');
-    if (addBookButton) {
-        addBookButton.addEventListener('click', showAddBookModal);
-    }
-
-    var cancelModalButton = document.getElementById('cancel-modal-button');
-    if (cancelModalButton) {
-        cancelModalButton.addEventListener('click', hideAddBookModal);
-    }
-
-    var acceptModalButton = document.getElementById('accept-modal-button');
-    if (acceptModalButton) {
-        acceptModalButton.addEventListener('click', handleModalAccept);
-    }
-
-    var favButton = document.querySelectorAll('.favorite-button');
-    if (favButton) {
-        favButton.forEach(function(currentValue) {
-            currentValue.addEventListener('click', handleFavoriteClick);
-        });
-    };
-});
