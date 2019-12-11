@@ -206,47 +206,15 @@ function parseBookElm(bookElm) {
 // ================================= Searchbar stuff ================================= //
 
 function handleSearchKeystroke(event) {
-    getSearchText();
-    applyTextFilter();
-}
-
-function getSearchText() {
-    var pressedKey = String.fromCharCode(event.keyCode);
-
-    // Handle backspace
-    if (event.keyCode == 8) {
-        searchText = replaceAt(searchText, searchText.length - 1, '');
-    } else {
-        if (/[a-zA-Z0-9-_ ]/.test(pressedKey)) {
-            searchText = searchText.concat(pressedKey);
-        }
-    }
-}
-
-function replaceAt(searchString, indexOfLastChar, chr) {
-    if (indexOfLastChar > searchString.length - 1) return searchString;
-    return searchString.substr(0, indexOfLastChar) + chr + searchString.substr(indexOfLastChar + 1);
-}
-
-function applyTextFilter() {
+    searchText = document.getElementById('search').value.toLowerCase().trim();
+    let matchingBooks = allBooks.filter(book => book.title.toLowerCase().includes(searchText));
     removeBooksFromDOM();
-    allBooks.forEach(function(book) {
-        if (searchMatched(book) === true) {
-            insertNewBook(book.id, book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
-        }
-    })
+    matchingBooks.forEach(function(book) {
+        insertNewBook(book.id, book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
+    });
 }
 
-function searchMatched(book) {
-    if (searchText) {
-        var bookTitle = book.title.toLowerCase();
-        var filterText = searchText.toLowerCase();
-        if (bookTitle.indexOf(filterText) === -1) {
-            return false;
-        }
-    }
-    return true;
-}
+// ================================= On DOMContentLoaded ================================= //
 
 window.addEventListener('DOMContentLoaded', function() {
 
