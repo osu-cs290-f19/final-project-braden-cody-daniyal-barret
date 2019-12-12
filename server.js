@@ -5,7 +5,8 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var exphbs = require('express-handlebars');
 
-var bookData = require('./bookData');
+var bookData = require('./bookData.json');
+var quotes = require('./quotes.json')
 
 var app = express();
 var port = process.env.PORT || 8991;
@@ -32,6 +33,11 @@ app.post('/', function(req, res, next) {
     } else {
         res.status(404).send('Data was not successfully stored');
     }
+});
+
+app.get('/randQuote', function(req, res, next) {
+    randomQuoteIndex = Math.floor(Math.random() * (quotes.length));
+    res.render('partials/quotes', { page: 'quotes', quote: quotes[randomQuoteIndex].text, author: quotes[randomQuoteIndex].author, book: quotes[randomQuoteIndex].book })
 });
 
 app.post('/delete/:id', function(req, res, next) {
