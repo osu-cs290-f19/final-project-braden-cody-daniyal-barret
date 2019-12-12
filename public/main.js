@@ -63,11 +63,11 @@ function insertNewBook(id, title, author, subject, photoURL, vendorURL, favorite
 function applyEventListeners() {
     var editButtons = document.querySelectorAll('.edit-button');
     var favButtons = document.querySelectorAll('.favorite-button');
-    editButtons.forEach(function(currentValue) {
+    editButtons.forEach(function (currentValue) {
         currentValue.removeEventListener('click', handleEditButtonClick);
         currentValue.addEventListener('click', handleEditButtonClick);
     });
-    favButtons.forEach(function(currentValue) {
+    favButtons.forEach(function (currentValue) {
         currentValue.removeEventListener('click', handleFavoriteClick);
         currentValue.addEventListener('click', handleFavoriteClick);
     });
@@ -78,7 +78,7 @@ function storeBook(title, author, photoURL, subject, vendorURL, favorite) {
     var req = new XMLHttpRequest();
     req.open('POST', '/');
     req.setRequestHeader('Content-Type', 'application/json');
-    req.addEventListener('load', function(event) {
+    req.addEventListener('load', function (event) {
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert("Error storing book data: " + message);
@@ -94,14 +94,25 @@ function storeBook(title, author, photoURL, subject, vendorURL, favorite) {
     }));
 };
 
-function showAddBookModal() {
+function toggleAddBookModal() {
     var addBookModal = document.getElementById('add-a-book-modal');
-    addBookModal.classList.remove('hidden');
+    var isHide = addBookModal.offsetParent === null;
+    if (isHide) {
+        addBookModal.classList.remove('slideOutRight');
+        addBookModal.classList.add('slideInRight');
+        addBookModal.classList.remove('hidden');
+    } else {
+        hideAddBookModal();
+    }
 }
 
 function hideAddBookModal() {
     var addBookModal = document.getElementById('add-a-book-modal');
-    addBookModal.classList.add('hidden');
+    addBookModal.classList.remove('slideInRight');
+    addBookModal.classList.add('slideOutRight');
+    setTimeout(function () {
+        addBookModal.classList.add('hidden');
+    }, 650);
     clearModalFields();
 }
 
@@ -121,7 +132,7 @@ function handleFavoriteClick(event) {
     var req = new XMLHttpRequest();
     req.open('POST', '/favorites/' + bookId);
     req.setRequestHeader('Content-Type', 'application/json');
-    req.addEventListener('load', function(event) {
+    req.addEventListener('load', function (event) {
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert("Error processing request: " + message);
@@ -132,7 +143,7 @@ function handleFavoriteClick(event) {
     favorites = [];
     var favorited; // A boolean value to keep track of whether the book was 'favorited' or 'unfavorited'
     var targetBook; // The title of the book that was 'favorited' or 'unfavorited'
-    allBooks.forEach(function(book) {
+    allBooks.forEach(function (book) {
         if (Number(book.id) === Number(bookId)) {
             book.favorite = !book.favorite;
             favorited = book.favorite;
@@ -161,7 +172,7 @@ function handleFavoriteClick(event) {
 // Removes and reinserts all favorites into DOM
 function renderFavorites() {
     removeBooksFromDOM();
-    favorites.forEach(function(book) {
+    favorites.forEach(function (book) {
         insertNewBook(book.id, book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
     })
 }
@@ -178,7 +189,7 @@ function showSnackbar(message) {
     var snackbar = document.getElementById("snackbar");
     snackbar.innerText = message;
     snackbar.className = "show";
-    setTimeout(function() {
+    setTimeout(function () {
         snackbar.className = snackbar.className.replace("show", "");
     }, 1500);
 }
@@ -206,7 +217,7 @@ function handleSearchKeystroke(event) {
     searchText = document.getElementById('search').value.toLowerCase().trim();
     let matchingBooks = allBooks.filter(book => book.title.toLowerCase().includes(searchText) || book.author.toLowerCase().includes(searchText));
     removeBooksFromDOM();
-    matchingBooks.forEach(function(book) {
+    matchingBooks.forEach(function (book) {
         insertNewBook(book.id, book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
     });
     applyEventListeners();
@@ -227,11 +238,17 @@ function handleEditButtonClick(event) {
 function showEditBookModal() {
     var editBookModal = document.getElementById('edit-book-modal');
     editBookModal.classList.remove('hidden');
+    editBookModal.classList.remove('slideOutRight');
+    editBookModal.classList.add('slideInLeft');
 }
 
 function hideEditBookModal() {
     var editBookModal = document.getElementById('edit-book-modal');
-    editBookModal.classList.add('hidden');
+    editBookModal.classList.remove('slideInLeft');
+    editBookModal.classList.add('slideOutRight');
+    setTimeout(function () {
+        editBookModal.classList.add('hidden');
+    }, 650);
     clearEditBookModalFields();
 }
 
@@ -287,7 +304,7 @@ function handleEditModalAccept(event) {
     allBooks[bookIndex] = editedBook;
     removeBooksFromDOM();
     hideEditBookModal();
-    allBooks.forEach(function(book) {
+    allBooks.forEach(function (book) {
         insertNewBook(book.id, book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
     });
     applyEventListeners();
@@ -295,7 +312,7 @@ function handleEditModalAccept(event) {
     var req = new XMLHttpRequest();
     req.open('POST', '/edit/' + editBookID);
     req.setRequestHeader('Content-Type', 'application/json');
-    req.addEventListener('load', function(event) {
+    req.addEventListener('load', function (event) {
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert("Error processing request: " + message);
@@ -315,7 +332,7 @@ function handleDeleteBookClick(event) {
 
     removeBooksFromDOM();
     hideEditBookModal();
-    allBooks.forEach(function(book) {
+    allBooks.forEach(function (book) {
         insertNewBook(book.id, book.title, book.author, book.subject, book.photoURL, book.vendorURL, book.favorite);
     });
     applyEventListeners();
@@ -323,7 +340,7 @@ function handleDeleteBookClick(event) {
     var req = new XMLHttpRequest();
     req.open('POST', '/delete/' + editBookID);
     req.setRequestHeader('Content-Type', 'application/json');
-    req.addEventListener('load', function(event) {
+    req.addEventListener('load', function (event) {
         if (event.target.status !== 200) {
             var message = event.target.response;
             alert("Error processing request: " + message);
@@ -336,7 +353,7 @@ function handleDeleteBookClick(event) {
 
 // ================================= On DOMContentLoaded ================================= //
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
 
     var editBookID;
 
@@ -352,7 +369,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     var addBookButton = document.getElementById('add-a-book-button');
     if (addBookButton) {
-        addBookButton.addEventListener('click', showAddBookModal);
+        addBookButton.addEventListener('click', toggleAddBookModal);
     }
 
     var cancelModalButton = document.getElementById('cancel-modal-button');
@@ -367,14 +384,14 @@ window.addEventListener('DOMContentLoaded', function() {
 
     var favButton = document.querySelectorAll('.favorite-button');
     if (favButton) {
-        favButton.forEach(function(currentValue) {
+        favButton.forEach(function (currentValue) {
             currentValue.addEventListener('click', handleFavoriteClick);
         });
     };
 
     var editButtons = document.querySelectorAll('.edit-button');
     if (editButtons) {
-        editButtons.forEach(function(currentValue) {
+        editButtons.forEach(function (currentValue) {
             currentValue.addEventListener('click', handleEditButtonClick);
         });
     }
