@@ -200,10 +200,11 @@ nav {
 }
 
 .input-field.right.search #search {
-    max-height: 30px;
+    max-height: 25px;
     background-color: white;
     border-radius: 4px;
     box-shadow: 2px 1px #888888;
+    padding: 4px;
 }
 
 
