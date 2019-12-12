@@ -33,3 +33,8 @@ Search
 
 In the navbar, there is a searchbar. A user can begin typing the name of a book's title or author, and
 the books in both the library page and the favorites page will be filtered by this input.
+
+Quotes Page
+
+Clicking on the quotation icon in the right hand corner of the navbar will take the user to a page that
+will display a different, pseudorandom quote from a popular author each time the page is refreshed.
