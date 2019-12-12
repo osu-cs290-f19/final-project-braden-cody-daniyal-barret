@@ -34,12 +34,19 @@ app.post('/', function(req, res, next) {
     }
 });
 
+app.post('/delete/:id', function(req, res, next) {
+    var id = Number(req.params.id);
+    var idObject = createIdObject();
+    delete idObject[id];
+    bookData = convertObjectToArray(idObject);
+    fs.writeFile('bookData.json', JSON.stringify(bookData), function() {
+        return;
+    });
+});
+
 app.post('/edit/:id', function(req, res, next) {
     var id = Number(req.params.id);
-    var idObject = bookData.reduce(function(map, obj) {
-        map[obj.id] = obj;
-        return map;
-    }, {});
+    var idObject = createIdObject();
 
     idObject[id] = req.body;
     var newData = convertObjectToArray(idObject);
@@ -47,7 +54,6 @@ app.post('/edit/:id', function(req, res, next) {
         return;
     })
 });
-
 
 app.get('/favorites', function(req, res, next) {
     res.render('partials/libraryPage', { page: 'favorites', pageHeader: 'Your favorites', books: loadFavs() });
@@ -57,18 +63,22 @@ app.get('/favorites', function(req, res, next) {
 // A post request to this path will flip the value of 'favorite' for the book with the given id in the JSON storage file
 app.post('/favorites/:id', function(req, res, next) {
     var id = Number(req.params.id);
-    var idObject = bookData.reduce(function(map, obj) {
-        map[obj.id] = obj;
-        return map;
-    }, {});
+    var idObject = createIdObject();
     var updatedBook = idObject[id];
     updatedBook.favorite = !updatedBook.favorite;
     idObject[id] = updatedBook;
-    newBookData = convertObjectToArray(idObject);
-    fs.writeFile('bookData.json', JSON.stringify(newBookData), function() {
+    bookData = convertObjectToArray(idObject);
+    fs.writeFile('bookData.json', JSON.stringify(bookData), function() {
         return;
     });
 });
+
+function createIdObject() {
+    return bookData.reduce(function(map, obj) {
+        map[obj.id] = obj;
+        return map;
+    }, {});
+}
 
 function convertObjectToArray(idObject) {
     var data = [];

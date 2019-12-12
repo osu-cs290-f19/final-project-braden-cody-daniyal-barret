@@ -169,6 +169,10 @@ nav {
     margin: 20px;
 }
 
+.card .waves-effect.favorite-button {
+    float: right;
+}
+
 .card-image img:hover {
     transform: scale(1.04, 1.04)
 }
@@ -200,11 +204,17 @@ nav {
 }
 
 .input-field.right.search #search {
+    max-width: 200px;
     max-height: 25px;
     background-color: white;
     border-radius: 4px;
     box-shadow: 2px 1px #888888;
     padding: 4px;
+}
+
+.right.hide-on-med-and-down .waves-effect {
+    margin: 10%;
+    top: -10px;
 }
 
 
