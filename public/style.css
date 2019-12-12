@@ -173,19 +173,25 @@ nav {
 .card .waves-effect.favorite-button {
     float: right;
 }
+
 #nav-fav-btn {
     margin-top: 7px;
 }
+
 #add-a-book-button {
     margin-top: 13px;
 }
-#add-a-book-modal, #edit-book-modal {
+
+#add-a-book-modal,
+#edit-book-modal {
     padding: 20px;
 }
+
 h4 {
     color: #444444;
     text-shadow: -1px -1px 1px #000, 1px 1px 1px #ccc;
 }
+
 .card-image img:hover {
     transform: scale(1.04, 1.04)
 }
@@ -299,4 +305,25 @@ h4 {
         bottom: 0;
         opacity: 0;
     }
+}
+
+#quotes-container {
+    font-family: 'Courgette', cursive;
+    text-align: center;
+    margin-top: 10%;
+}
+
+#quote-content {
+    font-size: 22px;
+}
+
+.quote-author {
+    margin-top: 50px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.quote-source {
+    font-size: 16px;
+    font-weight: 100;
 }
