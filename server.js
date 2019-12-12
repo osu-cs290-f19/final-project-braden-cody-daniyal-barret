@@ -49,8 +49,8 @@ app.post('/edit/:id', function(req, res, next) {
     var idObject = createIdObject();
 
     idObject[id] = req.body;
-    var newData = convertObjectToArray(idObject);
-    fs.writeFile('bookData.json', JSON.stringify(newData), function() {
+    bookData = convertObjectToArray(idObject);
+    fs.writeFile('bookData.json', JSON.stringify(bookData), function() {
         return;
     })
 });
