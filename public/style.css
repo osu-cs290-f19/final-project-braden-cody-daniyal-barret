@@ -33,6 +33,7 @@ nav {
     background: #ff5c00;
     color: white;
     margin: 10px;
+    border-radius: 5px;
 }
 
 .btn:hover {
@@ -172,7 +173,19 @@ nav {
 .card .waves-effect.favorite-button {
     float: right;
 }
-
+#nav-fav-btn {
+    margin-top: 7px;
+}
+#add-a-book-button {
+    margin-top: 13px;
+}
+#add-a-book-modal, #edit-book-modal {
+    padding: 20px;
+}
+h4 {
+    color: #444444;
+    text-shadow: -1px -1px 1px #000, 1px 1px 1px #ccc;
+}
 .card-image img:hover {
     transform: scale(1.04, 1.04)
 }
@@ -214,7 +227,7 @@ nav {
 
 .right.hide-on-med-and-down .waves-effect {
     margin: 10%;
-    top: -10px;
+    top: -8px;
 }
 
 
